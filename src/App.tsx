@@ -1,13 +1,18 @@
 import React from 'react';
 import { Route, Switch } from "react-router-dom";
 import { ToastContainer } from "react-toastify";
+import { History } from 'history';
 
 import './App.scss';
 import { routes } from './routes';
-import { PrivateRoute } from "app/AppHOC";
-import AppContainer from 'app/AppContainer';
+import { PrivateRoute } from "./app/AppHOC";
+import AppContainer from './app/AppContainer';
 
-class App extends React.Component {
+type Props = {
+    history: History,
+}
+
+class App extends React.Component<Props> {
 
     render() {
         return (
