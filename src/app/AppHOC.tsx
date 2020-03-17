@@ -1,9 +1,10 @@
 import React from "react";
 import cookie from "react-cookies";
-import canUseDOM from "can-use-dom";
 import { Route, Redirect } from 'react-router-dom';
 
 import { LOCAL_STORAGE } from "./utils/Constants";
+
+import canUseDOM from "./../can-use-dom";
 
 export function PrivateRoute({ component: Component, ...rest }) {
     return (
