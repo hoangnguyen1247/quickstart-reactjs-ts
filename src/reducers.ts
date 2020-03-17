@@ -1,11 +1,7 @@
-import { combineReducers } from 'redux';
+import { combineReducers, Reducer } from 'redux';
 import { i18nReducer } from "react-redux-i18n";
 
-export interface RootState {
-    i18n: any,
-    homeReducer: any,
-    profileReducer: any,
-}
+import { profileReducers } from './app/modules/profile';
 
 type State = {
 
@@ -17,12 +13,18 @@ type Action = {
 
 const appReducer = combineReducers({
     i18n: i18nReducer,
+
+    ...profileReducers,
 });
 
-export default (state: RootState | undefined, action: any) => {
-    if (action.type === "RESET_STATE") {
-        state = undefined;
-    }
+// const rootReducer = (state: RootState, action: any) => {
+//     if (action.type === "RESET_STATE") {
+//         state = {} as RootState;
+//     }
 
-    return appReducer(state, action);
-}
+//     return appReducer(state, action);
+// }
+
+export type RootState = ReturnType<typeof appReducer>;
+
+export default appReducer;

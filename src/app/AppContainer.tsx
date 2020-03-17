@@ -1,5 +1,5 @@
 import React from 'react';
-import { connect } from "react-redux";
+import { connect, ConnectedProps } from "react-redux";
 import { bindActionCreators, Dispatch } from 'redux';
 import { History, UnregisterCallback } from 'history';
 
@@ -8,9 +8,28 @@ import { AppContext } from './AppContext';
 
 import InitialComponent from './modules/common/initial-component/InitialComponent';
 
-type Props = {
-    history: History,
+const mapStateToProps = ({ profileReducer }: RootState ) => {
+    return {
+        profile: profileReducer.profile,
+    };
+};
+
+const mapDispatchToProps = (dispatch: Dispatch) => {
+    return {
+        ...bindActionCreators({
+            
+        }, dispatch),
+    };
+}
+
+const connector = connect(mapStateToProps, mapDispatchToProps, null, { forwardRef: true });
+
+type PropsFromRedux = ConnectedProps<typeof connector>
+
+type Props = PropsFromRedux & {
+    history?: History,
     children: React.ReactNode,
+    profile: any,
 };
 
 class AppContainer extends React.Component<Props> {
@@ -24,7 +43,7 @@ class AppContainer extends React.Component<Props> {
     unlistenHistory: UnregisterCallback;
     initialComponentRef: { current: null | InitialComponent };
 
-    constructor(props: Props, context) {
+    constructor(props: Props, context: any) {
         super(props, context);
 
         this.unlistenHistory = () => {};
@@ -87,22 +106,10 @@ class AppContainer extends React.Component<Props> {
                     ref={this.initialComponentRef}
                 />
                 {this.props.children}
+                <h1>Hello</h1>
             </AppContext.Provider>
         );
     }
 }
 
-const mapStateToProps = ({ profileReducer }: RootState ) => {
-    return {
-        profile: profileReducer.profile,
-    };
-};
-
-const mapDispatchToProps = (dispatch: Dispatch) => {
-    return {
-        ...bindActionCreators({
-        }, dispatch),
-    };
-}
-
-export default connect(mapStateToProps, mapDispatchToProps, null, { forwardRef: true })(AppContainer);
+export default connector(AppContainer);

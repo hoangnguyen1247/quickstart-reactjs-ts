@@ -1,13 +1,16 @@
-import { Route, RouteProps } from 'react-router-dom';
+// import { Route, RouteProps } from 'react-router-dom';
 
-import LoginPage from "./app/modules/auth/login-page/LoginPage";
-import HomePage from "./app/modules/home/home-page/HomePage";
+// import LoginPage from "./app/modules/auth/login-page/LoginPage";
+// import HomePage from "./app/modules/home/home-page/HomePage";
 
-import { CustomRoute, ICustomRoute } from './app/AppHOC';
+import { AuthModule } from './app/modules/auth';
+import { HomeModule } from './app/modules/home';
 
-export type CustomRouteProps = { isPrivate?: boolean } & RouteProps;
+// export type CustomRouteProps = { isPrivate?: boolean } & RouteProps;
 
-export const routes: ICustomRoute[] = [
-    CustomRoute({ path: "/", component: LoginPage, exact: true }),
-    CustomRoute({ path: "/:id", component: HomePage, exact: false }),
+export const routes = [
+    ...AuthModule,
+    ...HomeModule,
+    // { path: "/", component: LoginPage, exact: true, isPrivate: false },
+    // { path: "/:id", component: HomePage, exact: false, isPrivate: false },
 ];

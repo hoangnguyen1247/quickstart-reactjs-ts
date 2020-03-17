@@ -1,4 +1,5 @@
 import path from 'path';
+import http from 'http';
 import express from 'express';
 import compression from 'compression';
 import morgan from 'morgan';
@@ -39,13 +40,25 @@ app.use(NotFoundRouter());
 // Error
 app.use(errorHandler);
 
+const server = http.createServer(app);
+
 // Listen
-app.listen(config.server.port, () => {
-    console.log(`App listening on port ${config.server.port}!`)
-});
+server.listen(config.server.port);
+
+server.on("listening", () => {
+    console.log(`App listening on port ${config.server.port}!`);
+})
+
+export interface ErrnoException extends Error {
+    errno?: number;
+    code?: string;
+    path?: string;
+    syscall?: string;
+    stack?: string;
+}
 
 // Process error
-app.on('error', (error) => {
+server.on('error', (error: ErrnoException) => {
     if (error.syscall !== 'listen') {
         throw error;
     }

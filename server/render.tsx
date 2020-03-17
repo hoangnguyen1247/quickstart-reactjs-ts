@@ -31,7 +31,7 @@ export function universalLoader(req, res) {
             return res.status(404).end();
         }
 
-        const context = {};
+        const context: any = {};
         const store = configureStore();
 
         const renderObj = renderToString(

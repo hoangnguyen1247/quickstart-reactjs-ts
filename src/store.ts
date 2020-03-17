@@ -21,7 +21,7 @@ export default function configureStore(initialState = {}) {
         applyMiddleware(...middlewares)
     ];
 
-    if (["local"].includes(process.env.REACT_APP_ENV) && typeof window.__REDUX_DEVTOOLS_EXTENSION__ === "function") {
+    if (process.env.REACT_APP_ENV === "local" && typeof window.__REDUX_DEVTOOLS_EXTENSION__ === "function") {
         enhancers.push(window.__REDUX_DEVTOOLS_EXTENSION__ && window.__REDUX_DEVTOOLS_EXTENSION__());
     }
 
@@ -31,7 +31,7 @@ export default function configureStore(initialState = {}) {
         compose(...enhancers)
     );
 
-    store.asyncReducers = {}; // Async reducer registry
+    // store.asyncReducers = {}; // Async reducer registry
 
     syncTranslationWithStore(store);
     store.dispatch(loadTranslations(translationsObject));

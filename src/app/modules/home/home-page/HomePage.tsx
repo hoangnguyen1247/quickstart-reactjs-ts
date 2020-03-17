@@ -1,9 +1,18 @@
 import React from "react";
+import { Link } from "react-router-dom";
 
 class HomePage extends React.Component {
 
     render() {
-        return null;
+        return (
+            <div>
+                <Link
+                    to={`/login`}
+                >
+                    Login
+                </Link>
+            </div>
+        );
     }
 }
 

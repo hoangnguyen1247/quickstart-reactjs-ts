@@ -8,7 +8,7 @@ switch (process.env.NODE_ENV) {
     case "development":
         selectedProfile = configDevelopment;
         break;
-    case "staging":
+    case "test":
         selectedProfile = configStaging;
         break;
     case "production":

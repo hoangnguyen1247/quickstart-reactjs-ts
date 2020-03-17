@@ -1,11 +1,13 @@
 {
     "compilerOptions": {
-        "target": "es5",
+        "target": "es2016",
         "lib": [
             "dom",
             "dom.iterable",
             "esnext"
         ],
+        "sourceMap": true,
+        "outDir": "./build",
         "allowJs": true,
         "skipLibCheck": true,
         "esModuleInterop": true,
@@ -17,9 +19,19 @@
         "resolveJsonModule": true,
         "isolatedModules": true,
         "noEmit": true,
+        "noImplicitAny": false,
+        "typeRoots": [
+            "./node_modules/@types",
+            "./types"
+        ],
         "jsx": "react"
     },
     "include": [
-        "src"
+        "src",
+        "server",
+        "types"
+    ],
+    "exclude": [
+        "typings"
     ]
 }
