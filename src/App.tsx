@@ -1,5 +1,5 @@
 import React from 'react';
-import { Route, Switch, Redirect, RouteProps } from "react-router-dom";
+import { Route, Switch, Redirect } from "react-router-dom";
 import { ToastContainer } from "react-toastify";
 import { History } from 'history';
 import cookie from "react-cookies";

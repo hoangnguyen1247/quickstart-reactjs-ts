@@ -1,4 +1,4 @@
-import { combineReducers, Reducer } from 'redux';
+import { combineReducers } from 'redux';
 import { i18nReducer } from "react-redux-i18n";
 
 import { profileReducers } from './app/modules/profile';

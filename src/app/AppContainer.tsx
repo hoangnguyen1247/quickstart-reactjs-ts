@@ -89,7 +89,6 @@ class AppContainer extends React.Component<Props> {
     };
 
     render() {
-        const { precacheData } = this.state;
         const {
             history,
             profile,
