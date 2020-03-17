@@ -5,7 +5,7 @@ import { History } from 'history';
 
 import './App.scss';
 import { routes } from './routes';
-import { PrivateRoute } from "./app/AppHOC";
+import { CustomRoute } from "./app/AppHOC";
 import AppContainer from './app/AppContainer';
 
 type Props = {
@@ -23,7 +23,7 @@ class App extends React.Component<Props> {
                     <Switch>
                         {routes.map((route, index) => (
                             route.isPrivate ?
-                                <PrivateRoute {...route} key={index} /> :
+                                <CustomRoute {...route} key={index} /> :
                                 <Route {...route} key={index} />
                             ))
                         }

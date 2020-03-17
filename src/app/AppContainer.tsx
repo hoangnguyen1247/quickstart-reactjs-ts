@@ -1,8 +1,9 @@
 import React from 'react';
 import { connect } from "react-redux";
-import { bindActionCreators } from 'redux';
-import { History } from 'history';
+import { bindActionCreators, Dispatch } from 'redux';
+import { History, UnregisterCallback } from 'history';
 
+import { RootState } from '../reducers';
 import { AppContext } from './AppContext';
 
 import InitialComponent from './modules/common/initial-component/InitialComponent';
@@ -20,10 +21,13 @@ class AppContainer extends React.Component<Props> {
         },
     };
 
+    unlistenHistory: UnregisterCallback;
+    initialComponentRef: { current: null | InitialComponent };
+
     constructor(props: Props, context) {
         super(props, context);
 
-        this.unlistenHistory = null;
+        this.unlistenHistory = () => {};
 
         this.initialComponentRef = React.createRef();
 
@@ -37,7 +41,7 @@ class AppContainer extends React.Component<Props> {
         this.subscribeLocationChange();
     }
 
-    componentDidUpdate(prevProps, prevState, snapshot) {
+    componentDidUpdate(prevProps: Props) {
 
     }
 
@@ -88,13 +92,13 @@ class AppContainer extends React.Component<Props> {
     }
 }
 
-const mapStateToProps = ({ profileReducer }) => {
+const mapStateToProps = ({ profileReducer }: RootState ) => {
     return {
         profile: profileReducer.profile,
     };
 };
 
-const mapDispatchToProps = (dispatch: Function) => {
+const mapDispatchToProps = (dispatch: Dispatch) => {
     return {
         ...bindActionCreators({
         }, dispatch),

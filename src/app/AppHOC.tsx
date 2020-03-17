@@ -1,12 +1,18 @@
 import React from "react";
 import cookie from "react-cookies";
-import { Route, Redirect } from 'react-router-dom';
+import { Route, Redirect, RouteProps } from 'react-router-dom';
 
 import { LOCAL_STORAGE } from "./utils/Constants";
+import { CustomRouteProps } from "../routes";
 
 import canUseDOM from "./../can-use-dom";
 
-export function PrivateRoute({ component: Component, ...rest }) {
+export type ICustomRoute = {
+    isPrivate?: boolean,
+} & RouteProps;
+
+export function CustomRoute({ ...rest }: CustomRouteProps): ICustomRoute {
+
     return (
         <Route
             {...rest}

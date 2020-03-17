@@ -50,7 +50,7 @@ app.on('error', (error) => {
         throw error;
     }
 
-    let bind = typeof port === 'string' ? 'Pipe ' + port : 'Port ' + port;
+    let bind = typeof config.server.port === 'string' ? 'Pipe ' + config.server.port : 'Port ' + config.server.port;
 
     // handle specific listen errors with friendly messages
     switch (error.code) {
