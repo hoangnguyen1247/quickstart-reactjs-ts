@@ -4,7 +4,6 @@
     "private": true,
     "author": "Hoàng hoangnguyen1247@gmail.com",
     "repository": "hoangnguyen1247/quickstart-reactjs-ts",
-    "type": "module",
     "devDependencies": {
         "@types/history": "^4.7.5",
         "@types/jest": "^25.1.4",
@@ -16,6 +15,10 @@
         "@types/redux": "^3.6.0"
     },
     "dependencies": {
+        "@babel/core": "^7.8.7",
+        "@babel/preset-env": "^7.8.7",
+        "@babel/preset-typescript": "^7.8.3",
+        "@babel/register": "^7.8.6",
         "@testing-library/jest-dom": "^4.2.4",
         "@testing-library/react": "^9.3.2",
         "@testing-library/user-event": "^7.1.2",
@@ -50,13 +53,13 @@
         "start": "react-scripts start",
         "start:dev": "NODE_ENV=development node -r ts-node/register server/index.ts",
         "start:prod": "NODE_ENV=production node -r ts-node/register server/index.ts",
+        "start:prod2": "NODE_ENV=production node -r @babel/register server/index.ts",
         "start:deploy": "node -r ts-node/register server/index.ts",
         "build": "GENERATE_SOURCEMAP=false react-scripts build",
         "test": "react-scripts test",
         "eject": "react-scripts eject",
         "pm2:dev": "pm2 deploy development",
         "pm2:prod": "pm2 deploy production"
-        
     },
     "eslintConfig": {
         "extends": "react-app"
