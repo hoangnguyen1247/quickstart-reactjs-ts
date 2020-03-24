@@ -1,5 +1,8 @@
 import React from "react";
 import { Link } from "react-router-dom";
+import {
+    Button, Card, Container, CardHeader, CardBody,
+} from "reactstrap";
 
 class HomePage extends React.Component {
 
@@ -11,6 +14,20 @@ class HomePage extends React.Component {
                 >
                     Login
                 </Link>
+                <Button
+                >
+                    Button
+                </Button>
+                <Container>
+                    <Card>
+                        <CardHeader>
+                            Title
+                        </CardHeader>
+                        <CardBody>
+                            
+                        </CardBody>
+                    </Card>
+                </Container>
             </div>
         );
     }
