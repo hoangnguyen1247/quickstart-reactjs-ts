@@ -1,6 +1,11 @@
 {
     "version": "2.4.2",
     "compilerOptions": {
+        "baseUrl": ".",
+        "paths": {
+            "server/*": ["./server/*"],
+            "src/*": ["./src/*"],
+        },
         "plugins": [{ "name": "typescript-plugin-css-modules" }],
         "target": "es2016",
         "module": "commonjs",

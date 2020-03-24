@@ -4,9 +4,10 @@ import { bindActionCreators, Dispatch } from 'redux';
 import { History, UnregisterCallback } from 'history';
 
 import { RootState } from '../reducers';
-import { AppContext } from './AppContext';
+import { AppContext } from '../app/AppContext';
 
-import InitialComponent from './modules/common/initial-component/InitialComponent';
+import InitialComponent from '../app/modules/common/initial-component/InitialComponent';
+import { ConfirmDialog } from '../app/core-ui/dialog/ConfirmDialog';
 
 const mapStateToProps = ({ profileReducer }: RootState ) => {
     return {
@@ -41,7 +42,11 @@ class AppContainer extends React.Component<Props> {
     };
 
     unlistenHistory: UnregisterCallback;
+    minWith992MediaQuery: any;
+    darkModeMediaQuery: any;
+
     initialComponentRef: { current: null | InitialComponent };
+    _confirmDialogRef: { current: null | ConfirmDialog };
 
     constructor(props: Props, context: any) {
         super(props, context);
@@ -49,6 +54,7 @@ class AppContainer extends React.Component<Props> {
         this.unlistenHistory = () => {};
 
         this.initialComponentRef = React.createRef();
+        this._confirmDialogRef = React.createRef();
 
         this.subscribeLocationChange = this.subscribeLocationChange.bind(this);
         this.unsubscribeLocationChange = this.unsubscribeLocationChange.bind(this);
@@ -58,6 +64,10 @@ class AppContainer extends React.Component<Props> {
 
     componentDidMount() {
         this.subscribeLocationChange();
+        this.subscribeWindowResize();
+        this.subscribeConnectionChange();
+        this.subscribeMinWidthChange();
+        this.subscribeDarkModeChange();
     }
 
     componentDidUpdate(prevProps: Props) {
@@ -66,6 +76,10 @@ class AppContainer extends React.Component<Props> {
 
     componentWillUnmount() {
         this.unsubscribeLocationChange();
+        this.unsubscribeWindowResize();
+        this.unsubscribeConnectionChange();
+        this.unsubscribeMinWidthChange();
+        this.unsubscribeDarkModeChange();
     }
 
     subscribeLocationChange() {
@@ -83,6 +97,93 @@ class AppContainer extends React.Component<Props> {
             this.unlistenHistory();
         }
     };
+
+    subscribeWindowResize() {
+        window.addEventListener('resize', () => {
+        }, false);
+    }
+
+    unsubscribeWindowResize() {
+        window.removeEventListener('resize', () => {
+
+        });
+    };
+
+    subscribeConnectionChange() {
+        window.addEventListener("online", () => {
+
+        });
+        window.addEventListener("offline", () => {
+
+        });
+    }
+
+    unsubscribeConnectionChange() {
+        window.removeEventListener("online", () => {
+
+        });
+        window.removeEventListener("offline", () => {
+
+        });
+    };
+
+    subscribeMinWidthChange() {
+        if (window.matchMedia) {
+            this.minWith992MediaQuery = window.matchMedia('(min-width: 992px)');
+            this.changeMinWidth992(this.minWith992MediaQuery.matches);
+
+            this.minWith992MediaQuery.addListener((e) => {
+                const minWith992Match = e.matches;
+                // const { current } = this._confirmDialogRef;
+                // if (current) {
+                    // current.show({}, () => {
+                        this.changeMinWidth992(minWith992Match);
+                    // })
+                // }
+            });
+        }
+    }
+
+    unsubscribeMinWidthChange() {
+        if (this.minWith992MediaQuery) {
+            this.minWith992MediaQuery.removeListener((e) => {
+            });
+        }
+    }
+
+    subscribeDarkModeChange() {
+        if (window.matchMedia && window.matchMedia('(prefers-color-scheme)').media !== 'not all') {
+            this.darkModeMediaQuery = window.matchMedia('(prefers-color-scheme: dark)');
+            this.changeDarkMode(this.darkModeMediaQuery.matches);
+
+            this.darkModeMediaQuery.addListener((e) => {
+                const darkModeMatch = e.matches;
+                // console.log(`Dark mode is ${darkModeOn ? '🌒 on' : '☀️ off'}.`);
+                
+                const { current } = this._confirmDialogRef;
+                if (current) {
+                    current.show({}, () => {
+                        this.changeDarkMode(darkModeMatch);
+                    })
+                }
+            });
+        }
+    }
+
+    unsubscribeDarkModeChange() {
+        if (this.darkModeMediaQuery) {
+            this.darkModeMediaQuery.removeListener((e) => {
+            });
+        }
+    }
+
+    changeMinWidth992(match: boolean) {
+
+    }
+    
+    changeDarkMode(match: boolean) {
+
+    }
 
     getUserProfile() {
 
@@ -103,6 +204,9 @@ class AppContainer extends React.Component<Props> {
             }}>
                 <InitialComponent
                     ref={this.initialComponentRef}
+                />
+                <ConfirmDialog
+                    ref={this._confirmDialogRef}
                 />
                 {this.props.children}
                 <h1>Hello</h1>

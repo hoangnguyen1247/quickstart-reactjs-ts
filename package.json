@@ -59,8 +59,8 @@
     },
     "scripts": {
         "start": "react-scripts start",
-        "start:dev": "NODE_ENV=development node -r ts-node/register server/index.ts",
-        "start:prod": "cross-env NODE_ENV=production node -r ts-node/register server/index.ts",
+        "start:dev": "cross-env NODE_ENV=development TS_NODE_PROJECT=tsconfig-server.json node -r ts-node/register server/index.ts",
+        "start:prod": "cross-env NODE_ENV=production TS_NODE_PROJECT=tsconfig-server.json node -r ts-node/register server/index.ts",
         "start:prod2": "cross-env NODE_ENV=production node -r @babel/register server/index.ts",
         "start:prod1": "cross-env NODE_ENV=production ts-node --project tsconfig-server.json server/index.ts",
         "start:deploy": "ts-node --project tsconfig-server.json server/index.ts",
