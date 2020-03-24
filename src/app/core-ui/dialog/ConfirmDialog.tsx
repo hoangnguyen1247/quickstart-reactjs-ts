@@ -51,7 +51,7 @@ export class ConfirmDialog extends React.Component<Props, State> {
         this.setState({ 
             isOpen: true,
             fields: Object.assign({}, this.state.fields, (data || {})), 
-            onOk: onOk
+            onOk: onOk,
         });
     };
 
@@ -61,8 +61,7 @@ export class ConfirmDialog extends React.Component<Props, State> {
         });
     };
 
-    handleBtnCancelClick(event) {
-        event.preventDefault();
+    handleBtnCancelClick() {
         this.toggle();
 
         const { onCancel } = this.state;
@@ -71,8 +70,7 @@ export class ConfirmDialog extends React.Component<Props, State> {
         }
     };
 
-    handleBtnOkClick(event) {
-        event.preventDefault();
+    handleBtnOkClick() {
         this.toggle();
 
         const { onOk } = this.state;
