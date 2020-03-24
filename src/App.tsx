@@ -4,7 +4,6 @@ import { ToastContainer } from "react-toastify";
 import { History } from 'history';
 import cookie from "react-cookies";
 
-import './App.scss';
 import canUseDOM from "./can-use-dom";
 import { LOCAL_STORAGE } from "./app/utils/Constants";
 import { routes } from './routes';

@@ -6,11 +6,14 @@
 import { AuthModule } from './app/modules/auth';
 import { HomeModule } from './app/modules/home';
 
+import NotFoundPage from './app/modules/home/not-found-page/NotFoundPage';
+
 // export type CustomRouteProps = { isPrivate?: boolean } & RouteProps;
 
 export const routes = [
-    ...AuthModule,
     ...HomeModule,
+    ...AuthModule,
     // { path: "/", component: LoginPage, exact: true, isPrivate: false },
     // { path: "/:id", component: HomePage, exact: false, isPrivate: false },
+    { path: "/:id", component: NotFoundPage, exact: false, isPrivate: false },
 ];
