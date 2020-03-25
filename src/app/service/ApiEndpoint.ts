@@ -11,6 +11,8 @@ export const APIS_AUTH__LOGOUT                              = AUTH_ENDPOINT + "/
 export const APIS_AUTH__REFRESH_TOKEN                       = AUTH_ENDPOINT + "/refresh-token"; // POST
 export const APIS_AUTH__AUTH_BY_FACEBOOK                    = AUTH_ENDPOINT + "/login-by-facebook"; // POST
 export const APIS_AUTH__AUTH_BY_GOOGLE                      = AUTH_ENDPOINT + "/login-by-google"; // POST
+export const APIS_AUTH__FORGET_PASSWORD                     = AUTH_ENDPOINT + "/forgot-password"; // PUT
+export const APIS_AUTH__RESET_PASSWORD                      = AUTH_ENDPOINT + "/reset-password"; // PUT
 
 export const APIS_USER__GET_PROFILE                         = BASE_ENDPOINT + "/account/profile"; // GET
 export const APIS_USER__CHANGE_PROFILE                      = BASE_ENDPOINT + "/account/profile"; // PUT

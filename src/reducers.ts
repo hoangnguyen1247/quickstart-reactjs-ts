@@ -1,11 +1,13 @@
 import { combineReducers } from 'redux';
 import { i18nReducer } from "react-redux-i18n";
 
+import { commonReducers } from './app/modules/common';
 import { profileReducers } from './app/modules/profile';
 
 const appReducer = combineReducers({
     i18n: i18nReducer,
 
+    ...commonReducers,
     ...profileReducers,
 });
 

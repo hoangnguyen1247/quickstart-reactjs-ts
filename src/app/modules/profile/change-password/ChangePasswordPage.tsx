@@ -4,11 +4,7 @@ import {
     Button, Card, Container, CardHeader, CardBody,
 } from "reactstrap";
 
-class HomePage extends React.Component {
-
-    _handleButtonButtonClick() {
-        
-    }
+class ChangePasswordPage extends React.Component {
 
     render() {
         return (
@@ -19,7 +15,6 @@ class HomePage extends React.Component {
                     Login
                 </Link>
                 <Button
-                    onClick={this._handleButtonButtonClick}
                 >
                     Button
                 </Button>
@@ -38,4 +33,4 @@ class HomePage extends React.Component {
     }
 }
 
-export default HomePage;
+export default ChangePasswordPage;

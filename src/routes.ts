@@ -1,10 +1,8 @@
 // import { Route, RouteProps } from 'react-router-dom';
 
-// import LoginPage from "./app/modules/auth/login-page/LoginPage";
-// import HomePage from "./app/modules/home/home-page/HomePage";
-
 import { AuthModule } from './app/modules/auth';
 import { HomeModule } from './app/modules/home';
+import { ProfileModule } from './app/modules/profile';
 
 import NotFoundPage from './app/modules/home/not-found-page/NotFoundPage';
 
@@ -13,7 +11,6 @@ import NotFoundPage from './app/modules/home/not-found-page/NotFoundPage';
 export const routes = [
     ...HomeModule,
     ...AuthModule,
-    // { path: "/", component: LoginPage, exact: true, isPrivate: false },
-    // { path: "/:id", component: HomePage, exact: false, isPrivate: false },
+    ...ProfileModule,
     { path: "/:id", component: NotFoundPage, exact: false, isPrivate: false },
 ];

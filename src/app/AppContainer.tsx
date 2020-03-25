@@ -9,7 +9,7 @@ import { AppContext } from '../app/AppContext';
 import InitialComponent from '../app/modules/common/initial-component/InitialComponent';
 import { ConfirmDialog } from '../app/core-ui/dialog/ConfirmDialog';
 
-const mapStateToProps = ({ profileReducer }: RootState ) => {
+const mapStateToProps = ({ catalogReducer, profileReducer }: RootState ) => {
     return {
         profile: profileReducer.profile,
     };
