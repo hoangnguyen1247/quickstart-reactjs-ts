@@ -1,4 +1,15 @@
+# QuickStart 
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+Create ReactJS project with Typescript [here](https://create-react-app.dev/docs/adding-typescript/)
+
+## Create project 
+```shell
+npm create-react-app my-app --template typescript
+```
+or 
+```shell
+yarn create react-app my-app --template typescript
+```
 
 ## Available Scripts
 
