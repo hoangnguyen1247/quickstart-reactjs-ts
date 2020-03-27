@@ -1,4 +1,5 @@
 import React, { MouseEventHandler } from "react";
+import classNames from "classnames";
 import Img from "react-image";
 import { 
     Fade,
@@ -54,11 +55,14 @@ const ImageUnLoader = (
 
 type Props = {
     src: string,
+    alt: string,
     loaderSrc?: string,
     unloaderSrc?: string,
     width: string,
-    height: string,
+    height?: string,
     circle?: boolean,
+    inline?: boolean,
+    stroke?: boolean,
     className?: string,
     id?: string,
     onClick?: MouseEventHandler,
@@ -70,11 +74,14 @@ const defaultProps = {
 
 export const Image = ({
     src, 
+    alt,
     loaderSrc,
     unloaderSrc,
     width = "100%", 
     height = "auto", 
     circle = false, 
+    inline = true, 
+    stroke = false, 
     className = "", 
     id, 
     onClick,
@@ -112,7 +119,19 @@ export const Image = ({
                 />
             }
             container={children => {
-                return <Fade timeout={200} className="d-inline-block">{children}</Fade>
+                return (
+                    <Fade 
+                        timeout={200} 
+                        className={classNames("bg-light justify-content-center align-items-center overflow-hidden", className, { 
+                            "d-inline-flex": inline, 
+                            "d-flex": !inline,
+                            "flex-fill": !inline,
+                        })}
+                        style={{ width: width, height: height, borderRadius: circle ? "50%" : "0", border: `${stroke ? 4 : 0}px solid #fff` }}
+                    >
+                        {children}
+                    </Fade>
+                )
             }}
             onClick={onClick}
             {...rest}

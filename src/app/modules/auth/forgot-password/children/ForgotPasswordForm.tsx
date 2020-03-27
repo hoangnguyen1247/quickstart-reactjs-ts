@@ -134,6 +134,7 @@ export class ForgotPasswordForm extends React.Component<Props, State> {
                     >
                         <Image
                             src={"/assets/images/logo.png"}
+                            alt=""
                             width={"128px"}
                             height={"128px"}
                             className={"logo"}

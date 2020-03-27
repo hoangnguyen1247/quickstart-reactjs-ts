@@ -12,6 +12,8 @@ import { Header } from "../../shared/header/Header";
 import { PageInner } from "../../shared/page-inner/PageInner";
 import { NavigationBar } from "../../shared/navigation/NavigationBar";
 import { Toolbar } from "../../shared/toolbar/Toolbar";
+import { JumbotronBanner } from "../../shared/jumbotron-banner/JumbotronBanner";
+import { AutoplayCarousel } from "../../shared/carousel/AutoplayCarousel";
 
 const mapStateToProps = () => {
     return {
@@ -51,6 +53,12 @@ class HomePage extends React.Component {
 
     render() {
         const homeI18n = I18n.t("home");
+        const banners = [
+            {
+                mobileSrc: "",
+                desktopSrc: "",
+            },
+        ];
 
         return (
             <div>
@@ -59,10 +67,20 @@ class HomePage extends React.Component {
                 </Helmet>
                 <Header
                 />
+                <JumbotronBanner>
+                    <AutoplayCarousel
+                        items={banners}
+                        itemClassName="embed-responsive-item"
+                    />
+                </JumbotronBanner>
                 <div className="d-flex">
                     <NavigationBar />
                     <PageInner>
                         <Toolbar
+                            breadcrumbItems={[
+                                { label: "Hello" },
+                                { label: "Hello" },
+                            ]}
                             breadcrumbActiveItemLabel="Home"
                         >
                             <Button>

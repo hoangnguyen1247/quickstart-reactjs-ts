@@ -38,8 +38,10 @@ export function Toolbar({
                             breadcrumbItems
                                 .map((item, index) => {
                                     return (
-                                        <BreadcrumbItem key={index}>
-                                            {item.label}
+                                        <BreadcrumbItem 
+                                            key={index}
+                                        >
+                                            <a href="#">{item.label}</a>
                                         </BreadcrumbItem>
                                     )
                                 })
