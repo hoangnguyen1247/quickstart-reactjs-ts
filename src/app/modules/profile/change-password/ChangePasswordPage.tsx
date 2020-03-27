@@ -24,7 +24,7 @@ class ChangePasswordPage extends React.Component {
                             Title
                         </CardHeader>
                         <CardBody>
-                            
+                            ChangePasswordPage
                         </CardBody>
                     </Card>
                 </Container>

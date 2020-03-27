@@ -34,7 +34,7 @@ const initialState = {
     onCancel: undefined,
 };
 
-export class ConfirmDialog extends React.Component<Props, State> {
+export class MessageDialog extends React.Component<Props, State> {
 
     static defaultProps = defaultProps;
 
@@ -43,7 +43,6 @@ export class ConfirmDialog extends React.Component<Props, State> {
     constructor(props) {
         super(props);
 
-        this.handleBtnCancelClick = this.handleBtnCancelClick.bind(this);
         this.handleBtnOkClick = this.handleBtnOkClick.bind(this);
     }
 
@@ -59,15 +58,6 @@ export class ConfirmDialog extends React.Component<Props, State> {
         this.setState({
             isOpen: !this.state.isOpen,
         });
-    };
-
-    handleBtnCancelClick() {
-        this.toggle();
-
-        const { onCancel } = this.state;
-        if (onCancel) {
-            onCancel();
-        }
     };
 
     handleBtnOkClick() {
@@ -103,12 +93,6 @@ export class ConfirmDialog extends React.Component<Props, State> {
                     <p className="message">{message}</p>
                 </ModalBody>
                 <ModalFooter>
-                    <Button
-                        className=""
-                        onClick={this.handleBtnCancelClick}
-                    >
-                        Cancel
-                    </Button>
                     <Button
                         color={"primary"}
                         className=""

@@ -12,5 +12,6 @@ export const routes = [
     ...HomeModule,
     ...AuthModule,
     ...ProfileModule,
-    { path: "/:id", component: NotFoundPage, exact: false, isPrivate: false },
+    { path: "/:id", component: NotFoundPage, exact: false, isPrivate: false, allowRoles: [] },
+    { path: "*", component: NotFoundPage, exact: false, isPrivate: false, allowRoles: [] },
 ];

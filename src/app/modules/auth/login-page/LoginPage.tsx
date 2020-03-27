@@ -1,9 +1,19 @@
 import React from "react";
+import { Link } from "react-router-dom";
 
 class LoginPage extends React.Component {
 
     render() {
-        return null;
+        return (
+            <div>
+                <Link
+                    to={`/login123`}
+                >
+                    Not Found
+                </Link>
+                Login page
+            </div>
+        )
     }
 }
 

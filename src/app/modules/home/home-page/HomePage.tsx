@@ -4,10 +4,26 @@ import {
     Button, Card, Container, CardHeader, CardBody,
 } from "reactstrap";
 
+import { AppContext } from "../../../AppContext";
+
 class HomePage extends React.Component {
 
+    static contextType = AppContext;
+
+    constructor(props) {
+        super(props);
+
+        this._handleButtonButtonClick = this._handleButtonButtonClick.bind(this);
+    }
+
     _handleButtonButtonClick() {
-        
+        const { 
+            confirmDialogRef,
+        } = this.context;
+
+        if (confirmDialogRef && confirmDialogRef.current) {
+            confirmDialogRef.current.show({});
+        }
     }
 
     render() {
@@ -29,7 +45,7 @@ class HomePage extends React.Component {
                             Title
                         </CardHeader>
                         <CardBody>
-                            
+                            Home page
                         </CardBody>
                     </Card>
                 </Container>

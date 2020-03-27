@@ -2,11 +2,12 @@ import React from 'react';
 import { connect, ConnectedProps } from "react-redux";
 import { bindActionCreators, Dispatch } from 'redux';
 import { History, UnregisterCallback } from 'history';
+import { ToastContainer } from "react-toastify";
 
 import { RootState } from '../reducers';
 import { AppContext } from '../app/AppContext';
 
-import InitialComponent from '../app/modules/common/initial-component/InitialComponent';
+import InitialComponent from './AppInitializer';
 import { ConfirmDialog } from '../app/core-ui/dialog/ConfirmDialog';
 
 const mapStateToProps = ({ catalogReducer, profileReducer }: RootState ) => {
@@ -29,7 +30,7 @@ type PropsFromRedux = ConnectedProps<typeof connector>
 
 type Props = PropsFromRedux & {
     history?: History,
-    children: React.ReactNode,
+    children: ({ profile }) => React.ReactNode,
     profile: any,
 };
 
@@ -45,7 +46,7 @@ class AppContainer extends React.Component<Props> {
     minWith992MediaQuery: any;
     darkModeMediaQuery: any;
 
-    initialComponentRef: { current: null | InitialComponent };
+    _initialComponentRef: { current: null | InitialComponent };
     _confirmDialogRef: { current: null | ConfirmDialog };
 
     constructor(props: Props, context: any) {
@@ -53,7 +54,7 @@ class AppContainer extends React.Component<Props> {
 
         this.unlistenHistory = () => {};
 
-        this.initialComponentRef = React.createRef();
+        this._initialComponentRef = React.createRef();
         this._confirmDialogRef = React.createRef();
 
         this.subscribeLocationChange = this.subscribeLocationChange.bind(this);
@@ -87,7 +88,8 @@ class AppContainer extends React.Component<Props> {
 
         if (history) {
             this.unlistenHistory = history.listen((location, action) => {
-                console.log(action, location.pathname, location.state);
+                // console.log(action, location.pathname, location.state);
+                console.log(action, location.pathname);
             });
         }
     };
@@ -199,17 +201,22 @@ class AppContainer extends React.Component<Props> {
             <AppContext.Provider value={{
                 history: history,
                 location: typeof history === "object" ? history.location : {},
-                initialComponentRef: this.initialComponentRef,
+                initialComponentRef: this._initialComponentRef,
+                confirmDialogRef: this._confirmDialogRef,
                 profile,
             }}>
                 <InitialComponent
-                    ref={this.initialComponentRef}
+                    ref={this._initialComponentRef}
                 />
                 <ConfirmDialog
                     ref={this._confirmDialogRef}
                 />
-                {this.props.children}
-                <h1>Hello</h1>
+                <ToastContainer
+                    autoClose={5000}
+                />
+                {this.props.children({
+                    profile,
+                })}
             </AppContext.Provider>
         );
     }

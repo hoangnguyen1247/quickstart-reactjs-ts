@@ -1,12 +1,13 @@
 import React from 'react';
 import { Route, Switch, Redirect } from "react-router-dom";
-import { ToastContainer } from "react-toastify";
 import { History } from 'history';
 import cookie from "react-cookies";
 
 import canUseDOM from "./can-use-dom";
 import { routes } from './routes';
 import { LOCAL_STORAGE } from "./app/utils/Constants";
+import { hasSomeRoles } from './app/utils/AppUtils';
+
 import AppContainer from './app/AppContainer';
 
 type Props = {
@@ -21,22 +22,48 @@ function App({
         <AppContainer
             history={history}
         >
-            <div className="routes-container">
-                <Switch>
-                    {routes.map((route, index) => {
-                        const { component, ...rest } = route;
+            {({ profile }) => (
+                <div className="routes-container">
+                    <Switch>
+                        {routes.map((route, index) => {
+                            const { component: Component, ...rest } = route;
 
-                        if (canUseDOM && route.isPrivate && !cookie.load(LOCAL_STORAGE.ACCESS_TOKEN)) {
-                            return (
-                                <Redirect to={{ pathname: "/login", /** state: { from: props.location } */ }} />
-                            )
-                        } else return (<Route key={index} component={component} {...rest} />)
-                    })}
-                </Switch>
-            </div>
-            <ToastContainer
-                autoClose={5000}
-            />
+                            if (canUseDOM && Array.isArray(route.allowRoles) && route.allowRoles.length > 0) {
+                                return (
+                                    <Route
+                                        {...rest}
+                                        render={props => {
+                                            if (!cookie.load(LOCAL_STORAGE.ACCESS_TOKEN)) {
+                                                return (
+                                                    <Redirect
+                                                        to={{
+                                                            pathname: "/login",
+                                                            state: { from: props.location }
+                                                        }}
+                                                    />
+                                                )
+                                            } else if (profile && hasSomeRoles(profile, route.allowRoles)) {
+                                                return <Component {...props} />;
+                                            } else {
+                                                return (
+                                                    <Redirect
+                                                        to={{
+                                                            pathname: "/not-found",
+                                                            state: { from: props.location }
+                                                        }}
+                                                    />
+                                                )
+                                            }
+                                        }}
+                                    />
+                                )
+                            } else {
+                                return (<Route key={index} component={Component} {...rest} />);
+                            }
+                        })}
+                    </Switch>
+                </div>
+            )}
         </AppContainer>
     );
 }

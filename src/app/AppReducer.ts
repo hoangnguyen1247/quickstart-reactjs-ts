@@ -1,6 +1,6 @@
 import { 
     CATALOG__CHANGE_MIN_WIDTH_992,
-} from "../actions/CatalogActions";
+} from "./AppActions";
 
 const initialState = {
     minWidth992: false,
