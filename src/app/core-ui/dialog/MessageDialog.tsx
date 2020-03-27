@@ -6,7 +6,7 @@ import {
     ModalFooter, Button,
 } from "reactstrap";
 
-import { AnyObject } from "src/common";
+import { AnyObject } from "../../../common";
 
 type Props = {
     title: string,

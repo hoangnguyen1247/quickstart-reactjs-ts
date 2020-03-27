@@ -1,10 +1,33 @@
 import React from "react";
-import { Link } from "react-router-dom";
-import {
-    Button, Card, Container, CardHeader, CardBody,
-} from "reactstrap";
+import { connect } from "react-redux";
+import { Dispatch, bindActionCreators } from "redux";
+import { Button } from "reactstrap";
+import { I18n } from "react-redux-i18n";
+import { Helmet } from "react-helmet-async";
+import PlusIcon from "mdi-react/PlusIcon";
 
 import { AppContext } from "../../../AppContext";
+
+import { Header } from "../../shared/header/Header";
+import { PageInner } from "../../shared/page-inner/PageInner";
+import { NavigationBar } from "../../shared/navigation/NavigationBar";
+import { Toolbar } from "../../shared/toolbar/Toolbar";
+
+const mapStateToProps = () => {
+    return {
+
+    };
+}
+
+const mapDispatchToProps = (dispatch: Dispatch) => {
+    return {
+        ...bindActionCreators({
+
+        }, dispatch),
+    }
+}
+
+const connector = connect(mapStateToProps, mapDispatchToProps, null, { forwardRef: true });
 
 class HomePage extends React.Component {
 
@@ -27,31 +50,33 @@ class HomePage extends React.Component {
     }
 
     render() {
+        const homeI18n = I18n.t("home");
+
         return (
             <div>
-                <Link
-                    to={`/login`}
-                >
-                    Login
-                </Link>
-                <Button
-                    onClick={this._handleButtonButtonClick}
-                >
-                    Button
-                </Button>
-                <Container>
-                    <Card>
-                        <CardHeader>
-                            Title
-                        </CardHeader>
-                        <CardBody>
-                            Home page
-                        </CardBody>
-                    </Card>
-                </Container>
+                <Helmet>
+                    <title>{homeI18n.meta.title}</title>
+                </Helmet>
+                <Header
+                />
+                <div className="d-flex">
+                    <NavigationBar />
+                    <PageInner>
+                        <Toolbar
+                            breadcrumbActiveItemLabel="Home"
+                        >
+                            <Button>
+                                <PlusIcon />
+                            </Button>
+                        </Toolbar>
+                        <div>
+                            Content
+                        </div>
+                    </PageInner>
+                </div>
             </div>
         );
     }
 }
 
-export default HomePage;
+export default connector(HomePage);

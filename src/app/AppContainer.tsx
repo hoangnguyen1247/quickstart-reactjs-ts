@@ -3,9 +3,15 @@ import { connect, ConnectedProps } from "react-redux";
 import { bindActionCreators, Dispatch } from 'redux';
 import { History, UnregisterCallback } from 'history';
 import { ToastContainer } from "react-toastify";
+import { I18n } from "react-redux-i18n";
+import { Helmet } from 'react-helmet-async';
 
 import { RootState } from '../reducers';
 import { AppContext } from '../app/AppContext';
+
+import { 
+    catalog_changeNavigationInRight,
+} from './AppActions';
 
 import InitialComponent from './AppInitializer';
 import { ConfirmDialog } from '../app/core-ui/dialog/ConfirmDialog';
@@ -13,13 +19,15 @@ import { ConfirmDialog } from '../app/core-ui/dialog/ConfirmDialog';
 const mapStateToProps = ({ catalogReducer, profileReducer }: RootState ) => {
     return {
         profile: profileReducer.profile,
+        minWidth992: catalogReducer.minWidth992,
+        navigationInRight: catalogReducer.navigationInRight,
     };
 };
 
 const mapDispatchToProps = (dispatch: Dispatch) => {
     return {
         ...bindActionCreators({
-            
+            changeNavigationInRight: catalog_changeNavigationInRight,
         }, dispatch),
     };
 }
@@ -59,6 +67,8 @@ class AppContainer extends React.Component<Props> {
 
         this.subscribeLocationChange = this.subscribeLocationChange.bind(this);
         this.unsubscribeLocationChange = this.unsubscribeLocationChange.bind(this);
+
+        this._changeNavigationInRight = this._changeNavigationInRight.bind(this);
 
         this.getUserProfile = this.getUserProfile.bind(this);
     }
@@ -187,6 +197,10 @@ class AppContainer extends React.Component<Props> {
 
     }
 
+    _changeNavigationInRight(match: boolean) {
+        this.props.changeNavigationInRight(match);
+    }
+
     getUserProfile() {
 
     };
@@ -195,7 +209,11 @@ class AppContainer extends React.Component<Props> {
         const {
             history,
             profile,
+
+            minWidth992,
+            navigationInRight,
         } = this.props;
+        const applicationI18n = I18n.t("application");
 
         return (
             <AppContext.Provider value={{
@@ -204,7 +222,15 @@ class AppContainer extends React.Component<Props> {
                 initialComponentRef: this._initialComponentRef,
                 confirmDialogRef: this._confirmDialogRef,
                 profile,
+
+                minWidth992,
+                navigationInRight,
+
+                changeNavigationInRight: this._changeNavigationInRight,
             }}>
+                <Helmet>
+                    <title>{applicationI18n.meta.title}</title>
+                </Helmet>
                 <InitialComponent
                     ref={this._initialComponentRef}
                 />

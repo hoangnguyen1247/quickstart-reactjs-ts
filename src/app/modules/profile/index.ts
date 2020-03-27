@@ -1,4 +1,4 @@
-import { AllRoleTypes } from "src/app/enum/RoleType";
+import { AllRoleTypes } from "../../enum/RoleType";
 
 import ProfilePage from "./profile-page/ProfilePage";
 import ChangeProfilePage from "./change-profile/ChangeProfilePage";

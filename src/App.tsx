@@ -48,7 +48,7 @@ function App({
                             const { component: Component, ...rest } = route;
 
                             if (canUseDOM && Array.isArray(route.allowRoles) && route.allowRoles.length > 0) {
-                                {_renderPrivateRouter(profile, route)}
+                                return _renderPrivateRouter(profile, route);
                             } else {
                                 return (<Route key={index} component={Component} {...rest} />);
                             }

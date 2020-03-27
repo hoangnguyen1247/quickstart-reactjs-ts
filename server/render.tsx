@@ -2,10 +2,10 @@ import fs from "fs";
 import path from "path";
 
 import React from "react";
-import { Helmet } from "react-helmet";
 import { Provider } from "react-redux";
 import { StaticRouter } from "react-router-dom";
 import { renderToString } from "react-dom/server";
+import { HelmetProvider } from 'react-helmet-async';
 
 import configureStore from "../src/store";
 import App from "../src/App";
@@ -32,12 +32,15 @@ export function universalLoader(req, res) {
         }
 
         const context: any = {};
+        const helmetContext: any = {};
         const store = configureStore();
 
         const renderObj = renderToString(
             <Provider store={store} >
                 <StaticRouter location={req.url} context={context} >
-                    <App {...initialData}/>
+                    <HelmetProvider context={helmetContext}>
+                        <App {...initialData}/>
+                    </HelmetProvider>
                 </StaticRouter>
             </Provider>
         );
@@ -47,7 +50,7 @@ export function universalLoader(req, res) {
             return;
         }
 
-        const helmet = Helmet.renderStatic();
+        const { helmet } = helmetContext;
         const html = prepHTML(htmlData, {
             html: helmet.htmlAttributes.toString(),
             head:

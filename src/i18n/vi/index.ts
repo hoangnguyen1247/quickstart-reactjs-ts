@@ -1,9 +1,13 @@
+import { home } from "./home/home";
 // import { validations } from './validations';
 
 export default {
     application: {
-        title: "Heramo BackOffice",
-        name: "Heramo",
+        meta: {
+            title: "Heramo BackOffice",
+            name: "Heramo",
+        },
     },
+    home: home,
     // validations: validations,
 };
