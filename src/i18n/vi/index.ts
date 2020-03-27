@@ -1,4 +1,5 @@
 import { home } from "./home/home";
+import { login } from "./auth/login";
 // import { validations } from './validations';
 
 export default {
@@ -9,5 +10,6 @@ export default {
         },
     },
     home: home,
+    login: login,
     // validations: validations,
 };

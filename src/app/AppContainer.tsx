@@ -10,16 +10,20 @@ import { RootState } from '../reducers';
 import { AppContext } from '../app/AppContext';
 
 import { 
+    catalog_changeMinWidth992,
+    catalog_changeDarkMode,
     catalog_changeNavigationInRight,
 } from './AppActions';
 
-import InitialComponent from './AppInitializer';
 import { ConfirmDialog } from '../app/core-ui/dialog/ConfirmDialog';
+
+import InitialComponent from './AppInitializer';
 
 const mapStateToProps = ({ catalogReducer, profileReducer }: RootState ) => {
     return {
         profile: profileReducer.profile,
         minWidth992: catalogReducer.minWidth992,
+        darkMode: catalogReducer.darkMode,
         navigationInRight: catalogReducer.navigationInRight,
     };
 };
@@ -27,6 +31,8 @@ const mapStateToProps = ({ catalogReducer, profileReducer }: RootState ) => {
 const mapDispatchToProps = (dispatch: Dispatch) => {
     return {
         ...bindActionCreators({
+            changeMinWidth992: catalog_changeMinWidth992,
+            changeDarkMode: catalog_changeDarkMode,
             changeNavigationInRight: catalog_changeNavigationInRight,
         }, dispatch),
     };
@@ -190,11 +196,11 @@ class AppContainer extends React.Component<Props> {
     }
 
     changeMinWidth992(match: boolean) {
-
+        this.props.changeMinWidth992(match);
     }
     
     changeDarkMode(match: boolean) {
-
+        this.props.changeDarkMode(match);
     }
 
     _changeNavigationInRight(match: boolean) {

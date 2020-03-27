@@ -23,7 +23,7 @@ type Props = {
     disabled?: boolean,
     innerRef?: any,
     rightIcon?: string,
-    onChange?: ChangeEventHandler,
+    onChange?: ChangeEventHandler<HTMLInputElement>,
     onKeyPress?: KeyboardEventHandler,
     onRightIconClick?: Function,
 };
