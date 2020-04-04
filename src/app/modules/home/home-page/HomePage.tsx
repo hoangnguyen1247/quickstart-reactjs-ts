@@ -12,6 +12,8 @@ import { Header } from "../../shared/header/Header";
 import { PageInner } from "../../shared/page-inner/PageInner";
 import { NavigationBar } from "../../shared/navigation/NavigationBar";
 import { Toolbar } from "../../shared/toolbar/Toolbar";
+import { Footer } from "../../shared/footer/Footer";
+
 import { JumbotronBanner } from "../../shared/jumbotron-banner/JumbotronBanner";
 import { AutoplayCarousel } from "../../shared/carousel/AutoplayCarousel";
 
@@ -92,6 +94,7 @@ class HomePage extends React.Component {
                         </div>
                     </PageInner>
                 </div>
+                <Footer />
             </div>
         );
     }

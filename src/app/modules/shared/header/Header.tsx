@@ -7,7 +7,7 @@ export function Header() {
         <Container fluid>
             <Container size="lg" className="py-2">
                 <div className="d-flex">
-                    <div style={{ width: "240px" }} className="d-flex align-items-center">
+                    <div style={{ }} className="d-flex align-items-center">
                         QuickStart
                     </div>
                     <div className="flex-fill"></div>
