@@ -16,6 +16,8 @@ import { Footer } from "../../shared/footer/Footer";
 
 import { JumbotronBanner } from "../../shared/jumbotron-banner/JumbotronBanner";
 import { AutoplayCarousel } from "../../shared/carousel/AutoplayCarousel";
+import { ExampleListCard } from "./children/ExampleListCard";
+import { CalendarCard } from "./children/CalendarCard";
 
 const mapStateToProps = () => {
     return {
@@ -61,6 +63,17 @@ class HomePage extends React.Component {
                 desktopSrc: "",
             },
         ];
+        const items = [
+            {
+                value: 1,
+            },
+            {
+                value: 2,
+            },
+            {
+                value: 3,
+            },
+        ];
 
         return (
             <div>
@@ -92,8 +105,17 @@ class HomePage extends React.Component {
                         <div>
                             Content
                         </div>
+                        <ExampleListCard
+                            items={items}
+                        />
+                        <ExampleListCard
+                            items={items}
+                            useDragHandle={true}
+                        />
                     </PageInner>
                 </div>
+                <CalendarCard
+                />
                 <Footer />
             </div>
         );
