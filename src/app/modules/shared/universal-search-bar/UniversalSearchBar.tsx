@@ -1,5 +1,4 @@
 import React from "react";
-import PropTypes from "prop-types";
 import queryString from "query-string";
 import { Link } from "react-router-dom";
 import { bindActionCreators } from "redux";
@@ -14,13 +13,6 @@ import { PAGE_STATES } from "src/app/utils/Constants";
 // import { 
 //     apiOrderItem_search,
 // } from "app/service/OrderItemService";
-import {
-    universalSearchBar_changePageState,
-    universalSearchBar_findManyOrdersSuccess,
-    universalSearchBar_findManyOrdersFailure,
-    universalSearchBar_findManyOrderItemsSuccess,
-    universalSearchBar_findManyOrderItemsFailure,
-} from "./actions/UniversalSearchBarActions";
 
 import { AppContext } from "src/app/AppContext";
 
@@ -32,18 +24,15 @@ import {
     UniversalSearchItem,
 } from 'src/app/modules/shared/universal-search';
 
-const propTypes = {
-    orders: PropTypes.array,
-    orderItems: PropTypes.array,
+type Props = {
 };
 
 const defaultProps = {
 
 };
 
-class UniversalSearchBarIns extends React.Component {
+export class UniversalSearchBar extends React.Component<Props> {
 
-    static propTypes = propTypes;
     static defaultProps = defaultProps;
     static contextType = AppContext;
 
@@ -137,14 +126,14 @@ class UniversalSearchBarIns extends React.Component {
     }
 
     handleOrderSelect(order) {
-        const { history } = this.props;
+        const { history } = this.context;
         if (history) {
             history.push(`/orders/${order.id}/details`);
         }
     }
 
     handleOrderItemSelect(orderItem) {
-        const { history } = this.props;
+        const { history } = this.context;
         if (history) {
             history.push(`/orders/${orderItem.order.id}/items/${orderItem.id}/details`);
         }
@@ -152,11 +141,6 @@ class UniversalSearchBarIns extends React.Component {
 
     render() {
         const { isShowUniversalSearch, searchKey } = this.state;
-        const {
-            pageState,
-            orders,
-            orderItems,
-        } = this.props;
         const orderStatusesI18n = I18n.t("common.order_status"); 
 
         return (
@@ -175,18 +159,20 @@ class UniversalSearchBarIns extends React.Component {
                         className="mb-0"
                         name="searchKey"
                         value={searchKey}
+                        rightIcon="mdi-magnify"
                         autoComplete="off"
                         onKeyPress={this.handleKeyPress}
                         onChange={this.handleInputChange}
+                        onRightIconClick={this.handleRightIconClick}
                     />
                 </UniversalSearchToggle2>
                 <UniversalSearchMenu className="w-100 py-0" style={{ maxHeight: "400px", overflowY: "scroll" }}>
-                    {pageState === PAGE_STATES.PENDING &&
+                    {/* {pageState === PAGE_STATES.PENDING &&
                         <UniversalSearchItem>
                             <Spinner />
                         </UniversalSearchItem>
-                    }
-                    {Array.isArray(orders) && orders.length > 0 &&
+                    } */}
+                    {/* {Array.isArray(orders) && orders.length > 0 &&
                         orders.map((item, index) => {
                             return (
                                 <UniversalSearchItem
@@ -241,8 +227,8 @@ class UniversalSearchBarIns extends React.Component {
                                 </UniversalSearchItem>
                             );
                         })
-                    }
-                    {pageState === PAGE_STATES.PRISTINE && 
+                    } */}
+                    {/* {pageState === PAGE_STATES.PRISTINE && 
                         <UniversalSearchItem>
                             <p>Nhập nội dung tìm kiếm để tiếp tục</p>
                         </UniversalSearchItem>
@@ -253,7 +239,7 @@ class UniversalSearchBarIns extends React.Component {
                         >
                             {"Không tìm thấy kết quả nào. Vui lòng thử lại."}
                         </UniversalSearchItem>
-                    }
+                    } */}
                     {/* {((Array.isArray(orders) && orders.length > 0) ||
                         (Array.isArray(orderItems) && orderItems.length > 0)) && */}
                     {searchKey &&
@@ -273,24 +259,3 @@ class UniversalSearchBarIns extends React.Component {
         );
     }
 }
-
-const mapStateToProps = ({ i18n, universalSearchBarReducer, searchResultReducer }) => {
-    return {
-        locale: i18n.locale,
-        pageState: universalSearchBarReducer.pageState,
-        orders: universalSearchBarReducer.orders,
-        orderItems: universalSearchBarReducer.orderItems,
-    };
-};
-
-const mapDispatchToProps = (dispatch) => {
-    return bindActionCreators({
-        universalSearchBar_changePageState,
-        universalSearchBar_findManyOrdersSuccess,
-        universalSearchBar_findManyOrdersFailure,
-        universalSearchBar_findManyOrderItemsSuccess,
-        universalSearchBar_findManyOrderItemsFailure,
-    }, dispatch);
-};
-
-export default connect(mapStateToProps, mapDispatchToProps, null, { forwardRef: true })(UniversalSearchBarIns);

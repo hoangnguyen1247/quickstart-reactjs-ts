@@ -4,7 +4,7 @@ import BellIcon from "mdi-react/BellIcon";
 import PlusIcon from "mdi-react/PlusIcon";
 
 import { MoreActionsDropdown } from "./MoreActionsDropdown";
-import UniversalSearchBar from "../../universal-search-bar/UniversalSearchBar";
+import { UniversalSearchBar } from "../../universal-search-bar/UniversalSearchBar";
 
 type Props = {
     children: React.ReactNode,
@@ -19,10 +19,11 @@ export function DesktopHeaderBar({
             <Container fluid className="header">
                 <Container size="lg" className="py-2">
                     <div className="d-flex">
-                        <div style={{ }} className="d-flex align-items-center">
-                            QuickStart
-                        </div>
-                        <Nav>
+                        <div className="d-flex justify-content-start" style={{ width: "360px" }}>
+                            <div style={{ }} className="d-flex align-items-center">
+                                QuickStart
+                            </div>
+                            <Nav>
                                 <NavItem className="d-flex align-items-center">
                                     <Button
                                         className="rounded-0"
@@ -37,12 +38,13 @@ export function DesktopHeaderBar({
                                         Menu 2
                                     </Button>
                                 </NavItem>
-                                </Nav>
-                        <div className="flex-fill">
+                            </Nav>
+                        </div>
+                        <div className="d-flex align-items-center flex-fill">
                             <UniversalSearchBar />
                             {children}
                         </div>
-                        <div className="">
+                        <div className="d-flex justify-content-end" style={{ width: "360px" }}>
                             <Nav>
                                 <NavItem className="d-flex align-items-center">
                                     <Button

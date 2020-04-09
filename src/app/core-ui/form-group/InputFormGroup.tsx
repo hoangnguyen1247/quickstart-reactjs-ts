@@ -6,7 +6,9 @@ import {
     FormGroup,
     FormText,
     Label,
+    Button,
 } from "reactstrap";
+import MagnifyIcon from "mdi-react/MagnifyIcon";
 import { InputType } from "reactstrap/lib/Input";
 
 type Props = {
@@ -25,7 +27,8 @@ type Props = {
     rightIcon?: string,
     onChange?: ChangeEventHandler<HTMLInputElement>,
     onKeyPress?: KeyboardEventHandler,
-    onRightIconClick?: Function,
+    onRightIconClick?: (event: any) => void,
+    [key: string]: any,
 };
 
 const defaultProps = {
@@ -76,11 +79,18 @@ export function InputFormGroup({
                     {...props}
                 />
                 {!!rightIcon && !!onRightIconClick &&
-                    <i 
-                        className="mdi mdi-magnify mdi-24px pointer" 
-                        style={{ marginLeft: "-32px" }} 
-                        // onClick={onRightIconClick}
-                    />
+                    <Button
+                        color="light"
+                        size="sm"
+                        className="p-0"
+                        onClick={onRightIconClick}
+                    >
+                        <MagnifyIcon
+                            className="pointer" 
+                            style={{ marginLeft: "-32px" }} 
+                            
+                        />
+                    </Button>
                 }
             </div>
             {!!errorMessage &&
