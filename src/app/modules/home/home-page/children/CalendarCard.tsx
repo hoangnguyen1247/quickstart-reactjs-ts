@@ -10,6 +10,10 @@ export function CalendarCard() {
     const [ eventsList, setEventsList ] = React.useState(new Date());
     const localizer = momentLocalizer(moment);
 
+    const handleSelect = ({ start, end }) => {
+        alert(start + " " + end);
+    }
+
     return (
         <div className="d-flex">
             <div className="" style={{ width: "256px" }}>
@@ -28,11 +32,15 @@ export function CalendarCard() {
             </div>
             <div className="flex-fill">
                 <Calendar
+                    selectable
                     localizer={localizer}
                     events={Array.isArray(eventsList) ? eventsList : []}
                     startAccessor="start"
                     endAccessor="end"
                     style={{ height: 500 }}
+                    defaultDate={new Date()}
+                    onSelectEvent={event => alert(event.title)}
+                    onSelectSlot={handleSelect}
                 />
             </div>
         </div>
