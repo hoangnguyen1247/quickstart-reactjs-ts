@@ -19,7 +19,7 @@ import { ConfirmDialog } from '../app/core-ui/dialog/ConfirmDialog';
 
 import InitialComponent from './AppInitializer';
 
-const mapStateToProps = ({ catalogReducer, profileReducer }: RootState ) => {
+const mapStateToProps = ({ catalogReducer, profileReducer }: RootState) => {
     return {
         profile: profileReducer.profile,
         minWidth992: catalogReducer.minWidth992,

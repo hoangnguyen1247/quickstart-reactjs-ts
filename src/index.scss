@@ -1,4 +1,5 @@
 @import '../node_modules/bootstrap/scss/bootstrap.scss';
+@import '../node_modules/react-image-lightbox/style.css';
 
 @import "./assets/styles/react-datepicker/react-datepicker.scss";
 @import "./assets/styles/react-datepicker/react-datepicker-custom.scss";
@@ -14,6 +15,10 @@ body {
 
 code {
     font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New', monospace;
+}
+
+.header {
+    z-index: 999;
 }
 
 .embed-responsive-lg-21by9::before {

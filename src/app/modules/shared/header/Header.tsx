@@ -1,37 +1,22 @@
 import React from "react";
 import { Container, Nav, NavItem, Button } from "reactstrap";
 
+import { AppContext } from "../../../AppContext";
+
+import { DesktopHeaderBar } from "./children/DesktopHeaderBar";
+
 export function Header() {
 
-    return (
-        <Container fluid>
-            <Container size="lg" className="py-2">
-                <div className="d-flex">
-                    <div style={{ }} className="d-flex align-items-center">
-                        QuickStart
-                    </div>
-                    <div className="flex-fill"></div>
-                    <div className="">
-                        <Nav>
-                            <NavItem>
-                                <Button
-                                    className="rounded-0"
-                                >
-                                    Hello
-                                </Button>
-                            </NavItem>
-                            <NavItem>
-                                <Button
-                                    outline
-                                    className="rounded-0"
-                                >
-                                    Hello
-                                </Button>
-                            </NavItem>
-                        </Nav>
-                    </div>
-                </div>
-            </Container>
-        </Container>
-    )
+    const { minWidth992 } = React.useContext(AppContext);
+
+    if (!minWidth992) {
+        return (
+            <div></div>
+        )
+    } else {
+        return (
+            <DesktopHeaderBar>
+            </DesktopHeaderBar>
+        )
+    }
 }
