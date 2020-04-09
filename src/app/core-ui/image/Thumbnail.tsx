@@ -6,13 +6,13 @@ import { Image } from "./Image";
 type Props = {
     imageUrl: string,
     width: string,
-    className: string,
+    className?: string,
     onImageClick: () => void,
 };
 
 const defaultProps = {
     imageUrl: "",
-    width: "36px",
+    width: "24px",
 }
 
 export function Thumbnail({
@@ -30,6 +30,7 @@ export function Thumbnail({
             height={width}
             circle={true}
             inline={true}
+            thumbnail={true}
             className={className}
             onClick={onImageClick}
         />

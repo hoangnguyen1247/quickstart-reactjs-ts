@@ -5,6 +5,7 @@ import PlusIcon from "mdi-react/PlusIcon";
 
 import { MoreActionsDropdown } from "./MoreActionsDropdown";
 import { UniversalSearchBar } from "../../universal-search-bar/UniversalSearchBar";
+import { Thumbnail } from "src/app/core-ui/image/Thumbnail";
 
 type Props = {
     children: React.ReactNode,
@@ -16,11 +17,17 @@ export function DesktopHeaderBar({
 
     return (
         <React.Fragment>
-            <Container fluid className="header">
+            <Container fluid className="header px-0">
                 <Container size="lg" className="py-2">
                     <div className="d-flex">
                         <div className="d-flex justify-content-start" style={{ width: "360px" }}>
-                            <div style={{ }} className="d-flex align-items-center">
+                            <div style={{ }} className="d-flex align-items-center mr-3">
+                                <Thumbnail
+                                    imageUrl=""
+                                    width="24px"
+                                    className="mr-2"
+                                    onImageClick={() => {}}
+                                />
                                 QuickStart
                             </div>
                             <Nav>

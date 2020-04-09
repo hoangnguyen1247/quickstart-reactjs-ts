@@ -113,13 +113,15 @@ export class MoreActionsDropdown extends React.Component<Props, State> {
             <Dropdown 
                 isOpen={this.state.isOpen} 
                 toggle={this.toggle} 
-                className={`more-actions-dropdown ${className || ""}`}
+                className={`more-actions-dropdown d-flex align-items-center ${className || ""}`}
             >
-                <DropdownToggle>
-                <Thumbnail 
-                    className="dropdown-toggle"
-                    onImageClick={this._handleAvatarClick}
-                />
+                <DropdownToggle
+                    className="d-flex align-items-center"
+                >
+                    <Thumbnail 
+                        className=""
+                        onImageClick={this._handleAvatarClick}
+                    />
                 </DropdownToggle>
                 <DropdownMenu right>
                     {Array.isArray(dropdownMenuItems) && dropdownMenuItems.length > 0 &&

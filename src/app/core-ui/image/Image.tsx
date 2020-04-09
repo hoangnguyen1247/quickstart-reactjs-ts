@@ -62,6 +62,7 @@ type Props = {
     height?: string,
     circle?: boolean,
     inline?: boolean,
+    thumbnail?: boolean,
     stroke?: boolean,
     className?: string,
     id?: string,
@@ -81,6 +82,7 @@ export const Image = ({
     height = "auto", 
     circle = false, 
     inline = true, 
+    thumbnail = true, 
     stroke = false, 
     className = "", 
     id, 
@@ -88,7 +90,44 @@ export const Image = ({
     ...rest
 }: Props) => {
 
-    return(
+    if (thumbnail) {
+        return (
+            <Img
+                src={src}
+                style={{width: width, height: height, borderRadius: circle ? "50%" : "0"}}
+                className={className}
+                id={id}
+                loader={
+                    <ImageLoader 
+                        src={loaderSrc}
+                        alt=""
+                        width={width} 
+                        height={height} 
+                        circle={circle} 
+                        className={className} 
+                        id={id} 
+                        onClick={onClick}
+                    />
+                }
+                unloader={
+                    <ImageUnLoader
+                        src={unloaderSrc}
+                        alt=""
+                        width={width} 
+                        height={height} 
+                        circle={circle} 
+                        className={className} 
+                        id={id} 
+                        onClick={onClick}
+                    />
+                }
+                onClick={onClick}
+                {...rest}
+            />
+        )
+    }
+
+    return (
         <Img
             src={src}
             style={{width: width, height: height, borderRadius: circle ? "50%" : "0"}}

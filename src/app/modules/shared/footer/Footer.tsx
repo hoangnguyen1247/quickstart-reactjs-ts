@@ -5,7 +5,7 @@ import FacebookIcon from "mdi-react/FacebookIcon";
 export function Footer() {
 
     return (
-        <Container fluid>
+        <Container fluid className="px-0">
             <Container size="lg" className="py-2">
                 <div className="row">
                     <div className="col-12 col-lg-4">
@@ -22,6 +22,9 @@ export function Footer() {
                         <h5 className="mb-3">Company</h5>
                         <p>
                             <span>About Us</span>
+                        </p>
+                        <p>
+                            <span>Contact</span>
                         </p>
                     </div>
                     <div className="col-12 col-lg-2">
@@ -63,9 +66,13 @@ export function Footer() {
                 </div>
             </Container>
             <Container size="lg" className="py-2">
-                <p>
-                    <span className="text-muted">© Copyright 2020 QuickStart Technologies, Inc. All rights reserved.</span>
-                </p>
+                <div className="row">
+                    <div className="col-12 col-lg-6">
+                        <p className="mb-0 small">
+                            <span className="text-muted">© Copyright 2020 QuickStart Technologies, Inc. All rights reserved.</span>
+                        </p>
+                    </div>
+                </div>
             </Container>
         </Container>
     )

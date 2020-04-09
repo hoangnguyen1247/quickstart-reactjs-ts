@@ -25,7 +25,7 @@ export function Toolbar({
 }: Props) {
 
     return (
-        <Container fluid>
+        <Container fluid className="px-0">
             <div className="d-flex align-items-center">
                 {isShowLeftIcon &&
                     <Button className="">
@@ -33,7 +33,9 @@ export function Toolbar({
                     </Button>
                 }
                 <div className="mr-auto">
-                    <Breadcrumb>
+                    <Breadcrumb
+                        listClassName="mb-0"
+                    >
                         {Array.isArray(breadcrumbItems) && breadcrumbItems.length > 0 &&
                             breadcrumbItems
                                 .map((item, index) => {

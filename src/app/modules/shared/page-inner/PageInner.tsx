@@ -8,7 +8,7 @@ type Props = {
 export function PageInner({ children }: Props) {
 
     return (
-        <Container fluid className="d-block">
+        <Container fluid className="d-block px-0">
             {children}
         </Container>
     )

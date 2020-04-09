@@ -22,7 +22,7 @@ export function NavigationBar() {
     };
 
     return (
-        <Container fluid style={{ width: "240px" }} className={classNames(`${navigationInRight ? "border-left" : "border-right"}`, { 
+        <Container fluid style={{ width: "240px" }} className={classNames(`px-0 ${navigationInRight ? "border-left" : "border-right"}`, { 
             "order-1": navigationInRight,
         })}>
             <div className="d-flex align-items-center">
