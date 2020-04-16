@@ -7,8 +7,8 @@ import { StaticRouter } from "react-router-dom";
 import { renderToString } from "react-dom/server";
 import { HelmetProvider } from 'react-helmet-async';
 
-import configureStore from "../src/store";
-import App from "../src/App";
+import configureStore from "src/store";
+import App from "src/App";
 
 const initialData = {
 

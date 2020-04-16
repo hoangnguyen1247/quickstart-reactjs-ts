@@ -5,12 +5,12 @@ import compression from 'compression';
 import morgan from 'morgan';
 import favicon from 'serve-favicon';
 
-import { IndexRouter } from './routers/IndexRouter';
-import { ApiRouter } from './routers/ApiRouter';
-import { NotFoundRouter } from './routers/NotFoundRouter';
+import { IndexRouter } from 'server/routers/IndexRouter';
+import { ApiRouter } from 'server/routers/ApiRouter';
+import { NotFoundRouter } from 'server/routers/NotFoundRouter';
 
-import { config } from "./config";
-import { errorHandler } from "./controller/error/ErrorHandler";
+import { config } from "server/config";
+import { errorHandler } from "server/controller/error/ErrorHandler";
 
 const app = express();
 

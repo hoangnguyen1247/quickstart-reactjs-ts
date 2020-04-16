@@ -3,7 +3,7 @@ import { Route, Switch, Redirect } from "react-router-dom";
 import { History } from 'history';
 import cookie from "react-cookies";
 
-import canUseDOM from "./can-use-dom";
+import canUseDOM from "src/can-use-dom";
 import { routes } from './routes';
 import { LOCAL_STORAGE } from "./app/utils/Constants";
 import { hasSomeRoles } from './app/utils/AppUtils';

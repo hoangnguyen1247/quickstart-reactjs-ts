@@ -20,7 +20,7 @@ import { config } from "../../../../../config";
 import { SUPPORTED_LANGUAGES } from "../../../../utils/Constants";
 
 import { AppContext } from "../../../../AppContext";
-import { Thumbnail } from 'src/app/core-ui/image/Thumbnail';
+import { Thumbnail } from '../../../../core-ui/image/Thumbnail';
 
 type Props = {
     className?: string,

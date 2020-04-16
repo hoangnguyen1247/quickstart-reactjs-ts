@@ -1,10 +1,8 @@
 import React from "react";
 import queryString from "query-string";
 import { Link } from "react-router-dom";
-import { bindActionCreators } from "redux";
-import { connect } from "react-redux";
-import { Spinner } from "reactstrap";
 import { I18n } from "react-redux-i18n";
+import { Dropdown, DropdownToggle, DropdownMenu, DropdownItem } from "reactstrap";
 
 import { PAGE_STATES } from "src/app/utils/Constants";
 // import { 
@@ -14,15 +12,9 @@ import { PAGE_STATES } from "src/app/utils/Constants";
 //     apiOrderItem_search,
 // } from "app/service/OrderItemService";
 
-import { AppContext } from "src/app/AppContext";
+import { AppContext } from "../../../AppContext";
 
-import { InputFormGroup } from "src/app/core-ui/form-group/InputFormGroup";
-import {
-    UniversalSearch, 
-    UniversalSearchToggle2, 
-    UniversalSearchMenu, 
-    UniversalSearchItem,
-} from 'src/app/modules/shared/universal-search';
+import { InputFormGroup } from "../../../core-ui/form-group/InputFormGroup";
 
 type Props = {
 };
@@ -144,12 +136,12 @@ export class UniversalSearchBar extends React.Component<Props> {
         const orderStatusesI18n = I18n.t("common.order_status"); 
 
         return (
-            <UniversalSearch
+            <Dropdown
                 isOpen={isShowUniversalSearch}
                 toggle={this.toggleUniversalSearch}
                 style={{ width: "500px" }}
             >
-                <UniversalSearchToggle2
+                <DropdownToggle
                     tag="div"
                     className=""
                     onClick={this.toggleUniversalSearch}
@@ -165,8 +157,8 @@ export class UniversalSearchBar extends React.Component<Props> {
                         onChange={this.handleInputChange}
                         onRightIconClick={this.handleRightIconClick}
                     />
-                </UniversalSearchToggle2>
-                <UniversalSearchMenu className="w-100 py-0" style={{ maxHeight: "400px", overflowY: "scroll" }}>
+                </DropdownToggle>
+                <DropdownMenu className="w-100 py-0" style={{ maxHeight: "400px", overflowY: "scroll" }}>
                     {/* {pageState === PAGE_STATES.PENDING &&
                         <UniversalSearchItem>
                             <Spinner />
@@ -243,7 +235,7 @@ export class UniversalSearchBar extends React.Component<Props> {
                     {/* {((Array.isArray(orders) && orders.length > 0) ||
                         (Array.isArray(orderItems) && orderItems.length > 0)) && */}
                     {searchKey &&
-                        <UniversalSearchItem
+                        <DropdownItem
                             className="text-center"
                         >
                             <Link
@@ -252,10 +244,10 @@ export class UniversalSearchBar extends React.Component<Props> {
                             >
                                 {"Xem thêm kết quả."}
                             </Link>
-                        </UniversalSearchItem>
+                        </DropdownItem>
                     }
-                </UniversalSearchMenu>
-            </UniversalSearch>
+                </DropdownMenu>
+            </Dropdown>
         );
     }
 }

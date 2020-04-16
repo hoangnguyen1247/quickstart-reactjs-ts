@@ -1,11 +1,7 @@
 {
     "version": "2.4.2",
     "compilerOptions": {
-        "baseUrl": ".",
-        "paths": {
-            "server/*": ["./server/*"],
-            "src/*": ["./src/*"],
-        },
+        "baseUrl": "./",
         "plugins": [{ "name": "typescript-plugin-css-modules" }],
         "target": "es2016",
         "module": "commonjs",
@@ -16,7 +12,7 @@
             "es7"
         ],
         "sourceMap": true,
-        "outDir": "./build",
+        "outDir": "./dist",
 
         "strict": true,
         "noImplicitAny": false,
@@ -40,6 +36,11 @@
         ],
         "jsx": "react"
     },
+    "include": [
+        "src/**/*",
+        "server/**/*",
+        "types/**/*"
+    ],
     "exclude": [
         "node_modules"
     ]
