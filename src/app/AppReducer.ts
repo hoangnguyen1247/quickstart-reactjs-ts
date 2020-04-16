@@ -1,6 +1,9 @@
 import { 
     CATALOG__CHANGE_MIN_WIDTH_992,
     CATALOG__CHANGE_DARK_MODE,
+    CATALOG__CHANGE_MOBILE_HOME_BAR,
+    CATALOG__CHANGE_MOBILE_SEARCH_BAR,
+    CATALOG__CHANGE_MOBILE_ACTION_BAR,
     CATALOG__CHANGE_NAVIGATION_IN_RIGHT,
     CATALOG__GET_PROFILE_SUCCESS,
     CATALOG__GET_PROFILE_FAILURE,
@@ -9,6 +12,9 @@ import {
 const initialState = {
     minWidth992: false,
     darkMode: false,
+    isShowMobileHomeBar: false,
+    isShowMobileSearchBar: false,
+    isShowMobileActionBar: false,
     navigationInRight: false,
     profile: null,
 }
@@ -25,6 +31,21 @@ export default function(state = initialState, action) {
                 ...state,
                 darkMode: action.darkMode,
             }
+        case CATALOG__CHANGE_MOBILE_HOME_BAR:
+            return {
+                ...state,
+                isShowMobileHomeBar: action.show,
+            }
+        case CATALOG__CHANGE_MOBILE_SEARCH_BAR:
+            return {
+                ...state,
+                isShowMobileSearchBar: action.show,
+            } 
+        case CATALOG__CHANGE_MOBILE_ACTION_BAR:
+            return {
+                ...state,
+                isShowMobileActionBar: action.show,
+            } 
         case CATALOG__CHANGE_NAVIGATION_IN_RIGHT:
             return {
                 ...state,

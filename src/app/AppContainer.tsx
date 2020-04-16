@@ -12,10 +12,13 @@ import { AppContext } from '../app/AppContext';
 import { 
     catalog_changeMinWidth992,
     catalog_changeDarkMode,
+    catalog_changeMobileSearchBar,
+    catalog_changeMobileActionBar,
     catalog_changeNavigationInRight,
 } from './AppActions';
 
 import { ConfirmDialog } from '../app/core-ui/dialog/ConfirmDialog';
+import { ScrollupButton } from '../app/core-ui/scrollup-button/ScrollupButton';
 
 import InitialComponent from './AppInitializer';
 
@@ -24,6 +27,9 @@ const mapStateToProps = ({ catalogReducer, profileReducer }: RootState) => {
         profile: profileReducer.profile,
         minWidth992: catalogReducer.minWidth992,
         darkMode: catalogReducer.darkMode,
+        isShowMobileHomeBar: catalogReducer.isShowMobileHomeBar,
+        isShowMobileSearchBar: catalogReducer.isShowMobileSearchBar,
+        isShowMobileActionBar: catalogReducer.isShowMobileActionBar,
         navigationInRight: catalogReducer.navigationInRight,
     };
 };
@@ -33,6 +39,8 @@ const mapDispatchToProps = (dispatch: Dispatch) => {
         ...bindActionCreators({
             changeMinWidth992: catalog_changeMinWidth992,
             changeDarkMode: catalog_changeDarkMode,
+            changeMobileSearchBar: catalog_changeMobileSearchBar,
+            changeMobileActionBar: catalog_changeMobileActionBar,
             changeNavigationInRight: catalog_changeNavigationInRight,
         }, dispatch),
     };
@@ -74,6 +82,8 @@ class AppContainer extends React.Component<Props> {
         this.subscribeLocationChange = this.subscribeLocationChange.bind(this);
         this.unsubscribeLocationChange = this.unsubscribeLocationChange.bind(this);
 
+        this._changeMobileSearchBar = this._changeMobileSearchBar.bind(this);
+        this._changeMobileActionBar = this._changeMobileActionBar.bind(this);
         this._changeNavigationInRight = this._changeNavigationInRight.bind(this);
 
         this.getUserProfile = this.getUserProfile.bind(this);
@@ -203,6 +213,14 @@ class AppContainer extends React.Component<Props> {
         this.props.changeDarkMode(match);
     }
 
+    _changeMobileSearchBar(match: boolean) {
+        this.props.changeMobileSearchBar(match);
+    }
+    
+    _changeMobileActionBar(match: boolean) {
+        this.props.changeMobileActionBar(match);
+    }
+    
     _changeNavigationInRight(match: boolean) {
         this.props.changeNavigationInRight(match);
     }
@@ -217,6 +235,9 @@ class AppContainer extends React.Component<Props> {
             profile,
 
             minWidth992,
+            isShowMobileHomeBar,
+            isShowMobileSearchBar,
+            isShowMobileActionBar,
             navigationInRight,
         } = this.props;
         const applicationI18n = I18n.t("application");
@@ -230,8 +251,13 @@ class AppContainer extends React.Component<Props> {
                 profile,
 
                 minWidth992,
+                isShowMobileHomeBar,
+                isShowMobileSearchBar,
+                isShowMobileActionBar,
                 navigationInRight,
 
+                changeMobileSearchBar: this._changeMobileSearchBar,
+                changeMobileActionBar: this._changeMobileActionBar,
                 changeNavigationInRight: this._changeNavigationInRight,
             }}>
                 <Helmet>
@@ -245,6 +271,16 @@ class AppContainer extends React.Component<Props> {
                 />
                 <ToastContainer
                     autoClose={5000}
+                />
+                <ScrollupButton
+                    StopPosition={0}
+                    ShowAtPosition={150}
+                    EasingType='easeOutCubic'
+                    AnimationDuration={500}
+                    ContainerClassName='ScrollUpButton__Container'
+                    TransitionClassName='ScrollUpButton__Toggled'
+                    style={{}}
+                    ToggledStyle={{}}
                 />
                 {this.props.children({
                     profile,
