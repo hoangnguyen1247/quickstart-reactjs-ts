@@ -1,9 +1,62 @@
 import React from 'react';
 import TweenFunctions from 'tween-functions';
-import PropTypes from 'prop-types';
 import detectPassiveEvents from 'detect-passive-events';
 
-export class ScrollupButton extends React.Component {
+function LessThanShowAtPosition(props, propName, componentName): any {
+    const { ShowAtPosition } = props;
+    if (props[propName]) { // eslint-disable-line
+      const value = props[propName];
+      if (typeof value === 'number') {
+        if (value >= ShowAtPosition) { // Validate the incoming prop value againt the ShowAtPosition prop
+          return new Error(`${propName} (${value}) in ${componentName} must be less then prop: ShowAtPosition (${ShowAtPosition})`);
+        }
+        return null
+      }
+      return new Error(`${propName} in ${componentName} must be a number.`);
+    }
+    return null;
+  }
+
+type Props = {
+    children: React.ReactNode,
+    StopPosition: number,
+    ShowAtPosition: number, // show button under this position,
+    EasingType: 'linear' | 'easeInQuad' | 'easeOutQuad' | 'easeInOutQuad' | 'easeInCubic' |
+      'easeOutCubic' | 'easeInOutCubic' | 'easeInQuart' | 'easeOutQuart' | 'easeInOutQuart' | 'easeInQuint' |
+      'easeOutQuint' | 'easeInOutQuint' | 'easeInSine' | 'easeOutSine' | 'easeInOutSine' | 'easeInExpo' | 'easeOutExpo' |
+      'easeInOutExpo' | 'easeInCirc' | 'easeOutCirc' | 'easeInOutCirc' | 'easeInElastic' | 'easeOutElastic' |
+      'easeInOutElastic' | 'easeInBack' | 'easeOutBack' | 'easeInOutBack' | 'easeInBounce' | 'easeOutBounce' |
+      'easeInOutBounce',
+    AnimationDuration: number, // seconds
+    style: any, // eslint-disable-line react/forbid-prop-types
+    ToggledStyle: any, // eslint-disable-line react/forbid-prop-types
+    ContainerClassName: string,
+    TransitionClassName: string,
+  }
+  
+  type State = {
+    ToggleScrollUp: string,
+  }
+  const defaultProps = {
+      ContainerClassName: 'ScrollUpButton__Container',
+      StopPosition: 0,
+      ShowAtPosition: 150,
+      EasingType: 'easeOutCubic',
+      AnimationDuration: 500,
+      TransitionClassName: 'ScrollUpButton__Toggled',
+      style: {},
+      ToggledStyle: {},
+      children: null,
+    }
+    const initialState = {
+        ToggleScrollUp: "",
+    }
+export class ScrollupButton extends React.Component<Props, State> {
+    static defaultProps = defaultProps;
+
+    state: State = initialState;
+    Animation: any;
+    className = "";
   constructor(props) {
     super(props)
     this.state = { ToggleScrollUp: '' };
@@ -150,7 +203,7 @@ export class ScrollupButton extends React.Component {
     const { ToggleScrollUp } = this.state
     if (children) {
       const childrenWithProps = React.Children.map(children,
-        child => React.cloneElement(child, {
+        child => React.cloneElement(child ? child : {} as any, {
           className: this.className,
         }));
       return (
@@ -345,50 +398,4 @@ export const VerticleButton = (props) => {
     </ScrollupButton>
   );
 }
-
-ScrollupButton.defaultProps = {
-  ContainerClassName: 'ScrollUpButton__Container',
-  StopPosition: 0,
-  ShowAtPosition: 150,
-  EasingType: 'easeOutCubic',
-  AnimationDuration: 500,
-  TransitionClassName: 'ScrollUpButton__Toggled',
-  style: {},
-  ToggledStyle: {},
-  children: null,
-}
-
-function LessThanShowAtPosition(props, propName, componentName) {
-  const { ShowAtPosition } = props;
-  if (props[propName]) { // eslint-disable-line
-    const value = props[propName];
-    if (typeof value === 'number') {
-      if (value >= ShowAtPosition) { // Validate the incoming prop value againt the ShowAtPosition prop
-        return new Error(`${propName} (${value}) in ${componentName} must be less then prop: ShowAtPosition (${ShowAtPosition})`);
-      }
-      return null
-    }
-    return new Error(`${propName} in ${componentName} must be a number.`);
-  }
-  return null;
-}
-
-ScrollupButton.propTypes = {
-  children: PropTypes.oneOfType([
-    PropTypes.arrayOf(PropTypes.node),
-    PropTypes.node,
-  ]),
-  StopPosition: LessThanShowAtPosition,
-  ShowAtPosition: PropTypes.number, // show button under this position,
-  EasingType: PropTypes.oneOf(['linear', 'easeInQuad', 'easeOutQuad', 'easeInOutQuad', 'easeInCubic',
-    'easeOutCubic', 'easeInOutCubic', 'easeInQuart', 'easeOutQuart', 'easeInOutQuart', 'easeInQuint',
-    'easeOutQuint', 'easeInOutQuint', 'easeInSine', 'easeOutSine', 'easeInOutSine', 'easeInExpo', 'easeOutExpo',
-    'easeInOutExpo', 'easeInCirc', 'easeOutCirc', 'easeInOutCirc', 'easeInElastic', 'easeOutElastic',
-    'easeInOutElastic', 'easeInBack', 'easeOutBack', 'easeInOutBack', 'easeInBounce', 'easeOutBounce',
-    'easeInOutBounce']),
-  AnimationDuration: PropTypes.number, // seconds
-  style: PropTypes.object, // eslint-disable-line react/forbid-prop-types
-  ToggledStyle: PropTypes.object, // eslint-disable-line react/forbid-prop-types
-  ContainerClassName: PropTypes.string,
-  TransitionClassName: PropTypes.string,
-}
+  
