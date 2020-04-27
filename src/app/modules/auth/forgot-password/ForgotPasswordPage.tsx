@@ -1,7 +1,7 @@
 import React from "react";
 import { connect } from "react-redux";
 import { I18n } from "react-redux-i18n";
-import { Helmet } from "react-helmet";
+import { Helmet } from "react-helmet-async";
 import { History } from "history";
 
 import { ForgotPasswordForm } from "./children/ForgotPasswordForm";

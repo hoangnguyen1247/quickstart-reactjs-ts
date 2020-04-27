@@ -4,11 +4,11 @@ import { History } from 'history';
 import cookie from "react-cookies";
 
 import canUseDOM from "src/can-use-dom";
-import { routes } from './routes';
-import { LOCAL_STORAGE } from "./app/utils/Constants";
-import { hasSomeRoles } from './app/utils/AppUtils';
+import { routes } from 'src/routes';
+import { LOCAL_STORAGE } from "src/app/utils/Constants";
+import { hasSomeRoles } from 'src/app/utils/AppUtils';
 
-import AppContainer from './app/AppContainer';
+import AppContainer from 'src/app/AppContainer';
 
 type Props = {
     history?: History,

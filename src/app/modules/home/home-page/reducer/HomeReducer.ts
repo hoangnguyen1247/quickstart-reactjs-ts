@@ -1,4 +1,4 @@
-import { PAGE_STATES } from "../../../../utils/Constants";
+import { PAGE_STATES } from "src/app/utils/Constants";
 import { 
     HOME__CHANGE_PAGE_STATE,
 } from "../actions/HomeActions";

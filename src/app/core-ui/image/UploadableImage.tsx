@@ -11,7 +11,7 @@ import CloseIcon from "mdi-react/CloseIcon";
 
 import { 
     DEFAULT_UNLOADER_SRC,
-} from '../../utils/Constants';
+} from 'src/app/utils/Constants';
 import { Image } from './Image';
 
 import { ImageLightBox } from './ImageLightBox';
