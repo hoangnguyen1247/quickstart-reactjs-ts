@@ -13,7 +13,7 @@ import {
 
 import { AppContext } from 'src/app/AppContext';
 import { InputFormGroup } from "src/app/core-ui/form-group/InputFormGroup";
-import { Toastify } from "src/app/core-ui/toastify/Toastify";
+import { ReactToastify } from "src/app/core-ui/toast/ReactToastify";
 import { Image } from "src/app/core-ui/image/Image";
 
 const fieldsReducer = (state, action) => {
@@ -68,14 +68,14 @@ export function ForgotPasswordForm({
 
         apiAuth_forgotPassword(data)
             .then(res => {
-                Toastify.showSuccessToast("Đã gửi yêu cầu");
+                ReactToastify.showSuccessToast("Đã gửi yêu cầu");
 
                 if (history) {
                     history.push(`/reset-password`);
                 }
             })
             .catch(error => {
-                Toastify.showDangerToast(serverValidationsI18n[error.errorCode]);
+                ReactToastify.showDangerToast(serverValidationsI18n[error.errorCode]);
             });
     }
 

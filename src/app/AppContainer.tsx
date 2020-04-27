@@ -18,7 +18,7 @@ import {
 } from './AppActions';
 
 import { ConfirmDialog } from '../app/core-ui/dialog/ConfirmDialog';
-import { ScrollupButton } from '../app/core-ui/scrollup-button/ScrollupButton';
+import { ScrollupButton } from './core-ui/scrollup/ScrollupButton';
 
 import InitialComponent from './AppInitializer';
 

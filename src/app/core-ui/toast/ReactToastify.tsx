@@ -3,7 +3,7 @@ import { I18n } from 'react-redux-i18n';
 
 const serverValidations18n = I18n.t("server_validations");
 
-export const Toastify = {
+export const ReactToastify = {
 
     showDefaultToast: (message) => {
         toast(message, {
