@@ -43,6 +43,7 @@ class HomePage extends React.Component {
         super(props);
 
         this._handleButtonButtonClick = this._handleButtonButtonClick.bind(this);
+        this._handleButtonTestClick = this._handleButtonTestClick.bind(this);
     }
 
     _handleButtonButtonClick() {
@@ -53,6 +54,10 @@ class HomePage extends React.Component {
         if (confirmDialogRef && confirmDialogRef.current) {
             confirmDialogRef.current.show({});
         }
+    }
+
+    _handleButtonTestClick() {
+
     }
 
     render() {
@@ -104,6 +109,11 @@ class HomePage extends React.Component {
                         </Toolbar>
                         <div>
                             Content
+                            <Button
+                                onClick={this._handleButtonButtonClick}
+                            >
+                                Hello
+                            </Button>
                         </div>
                         <ExampleListCard
                             items={items}

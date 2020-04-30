@@ -90,6 +90,8 @@ export class ConfirmDialog extends React.Component<Props, State> {
                 isOpen={isOpen}
                 toggle={this.toggle}
                 className="confirm-dialog"
+                wrapClassName="custom-wrap"
+                backdropClassName="custom-backdrop"
                 backdrop={"static"}
             >
                 {isShowHeader &&
