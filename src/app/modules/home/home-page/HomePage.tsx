@@ -6,16 +6,17 @@ import { I18n } from "react-redux-i18n";
 import { Helmet } from "react-helmet-async";
 import PlusIcon from "mdi-react/PlusIcon";
 
-import { AppContext } from "../../../AppContext";
+import { AppContext } from "src/app/AppContext";
 
-import { Header } from "../../shared/header/Header";
-import { PageInner } from "../../shared/page-inner/PageInner";
-import { NavigationBar } from "../../shared/navigation/NavigationBar";
-import { Toolbar } from "../../shared/toolbar/Toolbar";
-import { Footer } from "../../shared/footer/Footer";
+import { Header } from "src/app/modules/shared/header/Header";
+import { PageInner } from "src/app/modules/shared/page-inner/PageInner";
+import { NavigationBar } from "src/app/modules/shared/navigation/NavigationBar";
+import { Toolbar } from "src/app/modules/shared/toolbar/Toolbar";
+import { Footer } from "src/app/modules/shared/footer/Footer";
 
-import { JumbotronBanner } from "../../shared/jumbotron-banner/JumbotronBanner";
-import { AutoplayCarousel } from "../../shared/carousel/AutoplayCarousel";
+import { JumbotronBanner } from "src/app/modules/shared/jumbotron-banner/JumbotronBanner";
+import { AutoplayCarousel } from "src/app/modules/shared/carousel/AutoplayCarousel";
+
 import { ExampleListCard } from "./children/ExampleListCard";
 import { CalendarCard } from "./children/CalendarCard";
 

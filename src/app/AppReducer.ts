@@ -1,3 +1,5 @@
+import { anyobj } from "src/common";
+
 import { 
     CATALOG__CHANGE_MIN_WIDTH_992,
     CATALOG__CHANGE_DARK_MODE,
@@ -19,7 +21,7 @@ const initialState = {
     profile: null,
 }
 
-export default function(state = initialState, action) {
+export default function(state = initialState, action = anyobj) {
     switch (action.type) {
         case CATALOG__CHANGE_MIN_WIDTH_992:
             return {

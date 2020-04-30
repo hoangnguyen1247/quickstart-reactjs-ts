@@ -1,10 +1,8 @@
-import React from "react";
+import React, { ChangeEventHandler, KeyboardEventHandler } from "react";
+import classNames from "classnames";
 
 import { 
-    Input,
-    InputGroup,
-    InputGroupAddon,
-    InputGroupText,
+    CustomInput,
     FormFeedback,
     FormGroup,
     FormText,
@@ -12,19 +10,20 @@ import {
 } from "reactstrap";
 
 type Props = {
-    type: string,
-    className: string,
-    label: string,
-    placeholder: string,
-    id: string,
-    name: string,
-    value: string, // for select, file, checkbox
-    checked: boolean, // for radio
-    helpText: string,
-    errorMessage: string,
-    disabled: boolean,
-    onChange: Function,
-    onKeyPress: Function,
+    type?: any,
+    className?: string,
+    label?: string,
+    placeholder?: string,
+    id?: string,
+    name?: string,
+    value?: string, // for select, file, checkbox
+    checked?: boolean, // for radio
+    helpText?: string,
+    errorMessage?: string,
+    disabled?: boolean,
+    onChange?: ChangeEventHandler<HTMLInputElement>,
+    onKeyPress?: KeyboardEventHandler,
+    [key: string]: any,
 };
 
 const defaultProps = {
@@ -34,7 +33,7 @@ const defaultProps = {
     disabled: false,
 };
 
-export const InputGroupFormGroup = ({
+export function CustomInputFormGroup({
     type,
     className,
     label,
@@ -48,34 +47,26 @@ export const InputGroupFormGroup = ({
     disabled,
     onChange,
     onKeyPress,
-}: Props) => {
+    ...props
+}: Props) {
 
     return (
-        <FormGroup>
-            {!!label && type !== "checkbox" && type !== "radio" && <Label>{label}</Label>}
-            <InputGroup>
-                <InputGroupAddon addonType="prepend">
-                    <InputGroupText>
-                        <Input
-                            addon
-                            type="checkbox"
-                            aria-label="Checkbox for following text input"
-                        />
-                    </InputGroupText>
-                </InputGroupAddon>
-                <Input
-                    label={placeholder}
-                />
-                <InputGroupAddon addonType="append">
-                    <InputGroupText>
-                        <Input
-                            addon
-                            type="checkbox"
-                            aria-label="Checkbox for following text input"
-                        />
-                    </InputGroupText>
-                </InputGroupAddon>
-            </InputGroup>
+        <FormGroup className={classNames(className)}>
+            {!!label && type !== "checkbox" && type !== "radio" && type !== "switch" && <Label>{label}</Label>}
+            <CustomInput
+                type={type}
+                label={label}
+                placeholder={placeholder}
+                id={id}
+                name={name}
+                value={value}
+                checked={checked}
+                invalid={!!errorMessage}
+                disabled={disabled}
+                onChange={onChange}
+                onKeyPress={onKeyPress}
+                {...props}
+            />
             {!!errorMessage &&
                 <FormFeedback
                     invalid={!!errorMessage}
@@ -92,4 +83,4 @@ export const InputGroupFormGroup = ({
     )
 };
 
-InputGroupFormGroup.defaultProps = defaultProps;
+CustomInputFormGroup.defaultProps = defaultProps;

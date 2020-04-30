@@ -16,11 +16,10 @@ import SettingsIcon from "mdi-react/SettingsIcon";
 import CatIcon from "mdi-react/CatIcon";
 import SignOutIcon from "mdi-react/SignOutIcon";
 
-import { config } from "../../../../../config";
-import { SUPPORTED_LANGUAGES } from "../../../../utils/Constants";
+import { SUPPORTED_LANGUAGES } from "src/app/utils/Constants";
 
-import { AppContext } from "../../../../AppContext";
-import { Thumbnail } from '../../../../core-ui/image/Thumbnail';
+import { AppContext } from "src/app/AppContext";
+import { Thumbnail } from 'src/app/core-ui/image/Thumbnail';
 
 type Props = {
     className?: string,
@@ -98,6 +97,7 @@ export class MoreActionsDropdown extends React.Component<Props, State> {
             return SUPPORTED_LANGUAGES.find(item => item.value === selectedLanguage) || SUPPORTED_LANGUAGES[0];
         };
         const dropdownMenuItems = [
+            { link: `/user`, text: "Username", icon: <AccountIcon className="mr-2"/>, private: false, divider: false },
             { link: `/settings/profile`, text: "Hồ sơ của tôi", icon: <AccountIcon className="mr-2"/>, private: false, divider: false },
             { link: `/settings`, text: "Cài đặt", icon: <SettingsIcon className="mr-2"/>, private: true, divider: true },
             { link: `/music`, text: "Playlist", icon: <MusicIcon className="mr-2"/>, private: false, divider: false },
