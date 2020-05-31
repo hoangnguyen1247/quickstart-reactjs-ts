@@ -1,13 +1,4 @@
 import React from 'react';
-import { Link } from "react-router-dom";
-import { 
-    Dropdown, 
-    DropdownMenu, 
-    DropdownToggle, 
-    DropdownItem, 
-    Button,
-} from "reactstrap";
-import ChevronDownIcon from "mdi-react/ChevronDownIcon";
 import AccountIcon from "mdi-react/AccountIcon";
 import MusicIcon from "mdi-react/MusicIcon";
 import FlagIcon from "mdi-react/FlagIcon";
@@ -15,8 +6,15 @@ import CashUsdOutlineIcon from "mdi-react/CashUsdOutlineIcon";
 import SettingsIcon from "mdi-react/SettingsIcon";
 import CatIcon from "mdi-react/CatIcon";
 import SignOutIcon from "mdi-react/SignOutIcon";
+import { Link } from "react-router-dom";
+import { 
+    Dropdown, 
+    DropdownMenu, 
+    DropdownToggle, 
+    DropdownItem, 
+} from "reactstrap";
 
-import { SUPPORTED_LANGUAGES } from "src/app/utils/Constants";
+// import { SUPPORTED_LANGUAGES } from "src/app/utils/Constants";
 
 import { AppContext } from "src/app/AppContext";
 import { Thumbnail } from 'src/app/core-ui/image/Thumbnail';
@@ -38,6 +36,7 @@ const defaultProps = {
 
 export class MoreActionsDropdown extends React.Component<Props, State> {
 
+    static defaultProps = defaultProps;
     static contextType = AppContext;
 
     state: State = {
@@ -84,18 +83,17 @@ export class MoreActionsDropdown extends React.Component<Props, State> {
     };
 
     render() {
-        const { selectedLanguage } = this.state;
+        // const { selectedLanguage } = this.state;
         const {
             className, 
-            toggleIcon, 
         } = this.props;
         const {
             profile,
         } = this.context;
 
-        const parseSelectedLanguage = (selectedLanguage) => {
-            return SUPPORTED_LANGUAGES.find(item => item.value === selectedLanguage) || SUPPORTED_LANGUAGES[0];
-        };
+        // const parseSelectedLanguage = (selectedLanguage) => {
+        //     return SUPPORTED_LANGUAGES.find(item => item.value === selectedLanguage) || SUPPORTED_LANGUAGES[0];
+        // };
         const dropdownMenuItems = [
             { link: `/user`, text: "Username", icon: <AccountIcon className="mr-2"/>, private: false, divider: false },
             { link: `/settings/profile`, text: "Hồ sơ của tôi", icon: <AccountIcon className="mr-2"/>, private: false, divider: false },

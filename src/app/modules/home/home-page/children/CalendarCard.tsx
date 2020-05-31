@@ -7,7 +7,7 @@ import { Button } from "reactstrap";
 export function CalendarCard() {
 
     const [ startDate, setStartDate ] = React.useState(new Date());
-    const [ eventsList, setEventsList ] = React.useState(new Date());
+    const [ eventsList ] = React.useState(new Date());
     const localizer = momentLocalizer(moment);
 
     const handleSelect = ({ start, end }) => {

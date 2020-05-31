@@ -9,7 +9,7 @@ import { MobileActionBar } from "./children/MobileActionBar";
 
 export function Header() {
 
-    const { minWidth992, isShowMobileHomeBar, isShowMobileSearchBar, isShowMobileActionBar } = React.useContext(AppContext);
+    const { minWidth992, isShowMobileSearchBar, isShowMobileActionBar } = React.useContext(AppContext);
 
     if (!minWidth992) {
         if (isShowMobileActionBar) {
