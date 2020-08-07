@@ -8,7 +8,7 @@ import { routes } from 'src/routes';
 import { LOCAL_STORAGE } from "src/app/utils/Constants";
 import { hasSomeRoles } from 'src/app/utils/AppUtils';
 
-import AppContainer from 'src/app/AppContainer';
+import { AppContainer } from 'src/app/AppContainer';
 
 type Props = {
     history?: History,
@@ -46,9 +46,9 @@ function App({
                 <div className="routes-container">
                     <Switch>
                         {routes.map((route, index) => {
-                            const { component: Component, ...rest } = route;
+                            const { component: Component, allowRoles, ...rest } = route;
 
-                            if (canUseDOM && Array.isArray(route.allowRoles) && route.allowRoles.length > 0) {
+                            if (canUseDOM && Array.isArray(allowRoles) && allowRoles.length > 0) {
                                 return _renderPrivateRouter(profile, route, index);
                             } else {
                                 return (<Route key={index} component={Component} {...rest} />);

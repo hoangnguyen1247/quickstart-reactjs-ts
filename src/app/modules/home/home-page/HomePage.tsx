@@ -8,14 +8,14 @@ import PlusIcon from "mdi-react/PlusIcon";
 
 import { AppContext } from "src/app/AppContext";
 
-import { Header } from "src/app/modules/shared/header/Header";
-import { PageInner } from "src/app/modules/shared/page-inner/PageInner";
-import { NavigationBar } from "src/app/modules/shared/navigation/NavigationBar";
-import { Toolbar } from "src/app/modules/shared/toolbar/Toolbar";
-import { Footer } from "src/app/modules/shared/footer/Footer";
+import { Header } from "src/app/shared/header/Header";
+import { PageInner } from "src/app/shared/page-inner/PageInner";
+import { NavigationBar } from "src/app/shared/navigation/NavigationBar";
+import { Toolbar } from "src/app/shared/toolbar/Toolbar";
+import { Footer } from "src/app/shared/footer/Footer";
 
-import { JumbotronBanner } from "src/app/modules/shared/jumbotron-banner/JumbotronBanner";
-import { AutoplayCarousel } from "src/app/modules/shared/carousel/AutoplayCarousel";
+import { JumbotronBanner } from "src/app/shared/jumbotron-banner/JumbotronBanner";
+import { AutoplayCarousel } from "src/app/shared/carousel/AutoplayCarousel";
 
 import { ExampleListCard } from "./children/ExampleListCard";
 import { CalendarCard } from "./children/CalendarCard";

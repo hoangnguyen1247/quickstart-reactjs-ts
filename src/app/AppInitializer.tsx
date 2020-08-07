@@ -1,10 +1,10 @@
 import React from "react";
 
-class InitialComponent extends React.Component {
+export function AppInitializer() {
 
-    render() {
-        return null;
-    }
+    React.useEffect(() => {
+        
+    })
+
+    return null;
 }
-
-export default InitialComponent;

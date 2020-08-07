@@ -1,6 +1,6 @@
 import React from "react";
 
-import { AppContext } from "../../../AppContext";
+import { AppContext } from "../../AppContext";
 
 import { DesktopHeaderBar } from "./children/DesktopHeaderBar";
 import { MobileHeaderBar } from "./children/MobileHeaderBar";

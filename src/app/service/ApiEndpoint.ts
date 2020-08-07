@@ -1,5 +1,4 @@
-// @flow
-import { config } from "../../config";
+import { config } from "src/config";
 
 export const BASE_ENDPOINT                                  = config.apis.baseUrl + "";
 export const AUTH_ENDPOINT                                  = config.apis.baseUrl + "/auth";
