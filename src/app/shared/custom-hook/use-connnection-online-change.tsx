@@ -20,10 +20,10 @@ export function useConnectionOnlineChange({
 
     React.useEffect(() => {
         let mounted = true;
-        const mediaQueryList: MediaQueryList =
-        typeof window === 'undefined'
-            ? mockMediaQueryList
-            : window.matchMedia(query);
+        // const mediaQueryList: MediaQueryList =
+        // typeof window === 'undefined'
+        //     ? mockMediaQueryList
+        //     : window.matchMedia(query);
 
         const onOnlineChange = () => {
             if (!mounted) {
@@ -31,8 +31,8 @@ export function useConnectionOnlineChange({
             }
 
             setState(true);
-        }; 
-        
+        };
+
         const onOfflineChange = () => {
             if (!mounted) {
                 return;

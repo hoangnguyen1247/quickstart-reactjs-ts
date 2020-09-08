@@ -1,6 +1,5 @@
 import React from "react";
 import classNames from "classnames";
-import moment from "moment";
 import DatePicker from "react-datepicker";
 
 type Props = {
@@ -36,14 +35,14 @@ const defaultProps = {
 };
 
 export function ReactDatepickerFormGroup({
-    value, 
-    label, 
-    placeholder, 
-    dateFormat, 
-    timeFormat, 
+    value,
+    label,
+    placeholder,
+    dateFormat,
+    timeFormat,
     errorMessage,
-    onChange, 
-    handleInputBlur, 
+    onChange,
+    handleInputBlur,
     className,
     inputClassName,
     isValidDate,

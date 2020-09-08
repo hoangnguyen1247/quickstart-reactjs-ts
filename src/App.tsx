@@ -14,7 +14,7 @@ type Props = {
     history?: History,
 }
 
-function App({ 
+function App({
     history,
 }: Props) {
 

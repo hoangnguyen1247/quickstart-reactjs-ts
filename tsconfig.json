@@ -33,10 +33,11 @@
         "allowJs": true,
         "forceConsistentCasingInFileNames": true,
 
+        "skipLibCheck": true,
         "typeRoots": [
             "./node_modules/@types",
             "./types"
-        ],
+        ]
     },
     "include": [
         "src",

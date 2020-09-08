@@ -22,11 +22,11 @@ export function useLocationChange({
     const query = rawQuery;
 
     React.useEffect(() => {
-        let mounted = true;
-        const mediaQueryList: MediaQueryList =
-        typeof window === 'undefined'
-            ? mockMediaQueryList
-            : window.matchMedia(query);
+        // let mounted = true;
+        // const mediaQueryList: MediaQueryList =
+        // typeof window === 'undefined'
+        //     ? mockMediaQueryList
+        //     : window.matchMedia(query);
 
         const unlistenHistory = history.listen((location, action) => {
             // console.log(action, location.pathname, location.state);
@@ -36,7 +36,7 @@ export function useLocationChange({
         setState("");
 
         return () => {
-            mounted = false;
+            // mounted = false;
             if (unlistenHistory) {
                 unlistenHistory();
             }

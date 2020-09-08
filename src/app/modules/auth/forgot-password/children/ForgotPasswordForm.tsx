@@ -4,7 +4,6 @@ import { I18n } from "react-redux-i18n";
 import { Link } from "react-router-dom";
 import { Button } from "reactstrap";
 
-import { AnyObject } from 'src/common';
 import { FORM_STATES } from "src/app/utils/Constants";
 
 import {
@@ -30,12 +29,6 @@ const fieldErrorsReducer = (state, action) => {
 }
 
 type Props = {
-};
-
-type State = {
-    fields: AnyObject,
-    fieldErrors: AnyObject,
-    formState: string,
 }
 
 const defaultProps = {
@@ -43,7 +36,7 @@ const defaultProps = {
 }
 
 const initialState = {
-    fields: { 
+    fields: {
         email: "",
         phoneNumber: "",
     },
@@ -61,7 +54,7 @@ export function ForgotPasswordForm({
     const { history } = React.useContext(AppContext);
     const [ fields, dispatchFields ] = React.useReducer(fieldsReducer, initialState.fields);
     const [ fieldErrors, dispatchFieldErrors ] = React.useReducer(fieldErrorsReducer, initialState.fieldErrors);
-    const [ formState, setFormState ] = React.useState(initialState.formState);
+    const [ formState, ] = React.useState(initialState.formState);
 
     const _handleForgotPassword = (data) => {
         const serverValidationsI18n = I18n.t("server_validations");
@@ -89,9 +82,9 @@ export function ForgotPasswordForm({
         dispatchFieldErrors({ [name]: errorMessage });
     };
 
-    const _handleRecaptchaChange = (value) => {
-        dispatchFields({ recaptcha: value, } );
-    };
+    // const _handleRecaptchaChange = (value) => {
+    //     dispatchFields({ recaptcha: value, } );
+    // };
 
     const _validateField = (field, value) => {
         const validationsI18n = I18n.t("validations");
@@ -161,9 +154,9 @@ export function ForgotPasswordForm({
                     <div className={"form-group button-wrap"}>
                         <Button
                             color="primary"
-                            type="submit" 
+                            type="submit"
                             className={"btn-login text-uppercase"}
-                            disabled={formState === FORM_STATES.PRISTINE || 
+                            disabled={formState === FORM_STATES.PRISTINE ||
                                 Object.keys(fieldErrors).some(key => fieldErrors[key])
                             }
                             onClick={_handleSubmitForm}

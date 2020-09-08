@@ -1,6 +1,6 @@
-import React, { ChangeEventHandler, MouseEventHandler } from "react";
+import React from "react";
 import classNames from 'classnames';
-import { 
+import {
     Button,
     FormFeedback,
     Spinner,
@@ -9,7 +9,7 @@ import ImageIcon from "mdi-react/ImageIcon";
 import PlusIcon from "mdi-react/PlusIcon";
 import CloseIcon from "mdi-react/CloseIcon";
 
-import { 
+import {
     DEFAULT_UNLOADER_SRC,
 } from 'src/app/utils/Constants';
 import { Image } from './Image';
@@ -151,7 +151,7 @@ export class UploadableImage extends React.Component<Props, State> {
         return (
             <React.Fragment>
                 <div
-                    className={classNames("uploadable-image position-relative", className, { 
+                    className={classNames("uploadable-image position-relative", className, {
                         "is-invalid": !!errorMessage,
                         "d-inline-flex": inline,
                     })}

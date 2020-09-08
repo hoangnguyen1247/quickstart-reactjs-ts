@@ -63,7 +63,6 @@ export class ReactSlickCarousel extends React.Component<Props> {
 
     render() {
         const {
-            className,
             itemClassName,
             items,
             isShowMask,
@@ -115,8 +114,8 @@ export class ReactSlickCarousel extends React.Component<Props> {
                     {items &&
                         items.map((item, index) => {
                             return (
-                                <div 
-                                    key={index} 
+                                <div
+                                    key={index}
                                     className="w-100 h-100 slide-item"
                                 >
                                     <Image
@@ -135,8 +134,8 @@ export class ReactSlickCarousel extends React.Component<Props> {
                                         className={classNames("for-mobile", {"pointer": !!item.link})}
                                         onClick={() => this.handleBannerClick(item.link)}
                                     />
-                                    {!item.isShowMask && isShowMask && 
-                                        <div 
+                                    {!item.isShowMask && isShowMask &&
+                                        <div
                                             className="overlay mask none-pointer-events"
                                         ></div>
                                     }
