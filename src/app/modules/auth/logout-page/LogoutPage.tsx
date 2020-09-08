@@ -1,8 +1,8 @@
-import React from "react";
+import { useEffect } from "react";
 import cookie from "react-cookies";
 import { History } from "history";
 
-import { LOCAL_STORAGE } from "../../../utils/Constants";
+import { LOCAL_STORAGE } from "src/app/utils/Constants";
 
 type Props = {
     history: History,
@@ -12,29 +12,27 @@ const defaultProps = {
 
 };
 
-class LogutPage extends React.Component<Props> {
+function LogutPage(props: Props){
 
-    static defaultProps = defaultProps;
+    const {
+        history,
+    } = props;
 
-    componentDidMount() {
-        this.clearAccessToken();
-
-        const { history } = this.props;
+    //
+    // didMount and willUnmount
+    useEffect(() => {
+        cookie.remove(LOCAL_STORAGE.ACCESS_TOKEN, { path: "/" });
+        cookie.remove(LOCAL_STORAGE.ACCESS_TOKEN_EXPIRES_IN, { path: "/" });
+        cookie.remove(LOCAL_STORAGE.REFRESH_TOKEN, { path: "/" });
 
         if (history) {
             history.push("/login");
         }
-    }
+    }, []);
 
-    clearAccessToken = () => {
-        cookie.remove(LOCAL_STORAGE.ACCESS_TOKEN, { path: "/" });
-        cookie.remove(LOCAL_STORAGE.ACCESS_TOKEN_EXPIRES_IN, { path: "/" });
-        cookie.remove(LOCAL_STORAGE.REFRESH_TOKEN, { path: "/" });
-    };
-
-    render() {
-        return null;
-    }
+    return null;
 }
+
+LogutPage.defaultProps = defaultProps;
 
 export default LogutPage;

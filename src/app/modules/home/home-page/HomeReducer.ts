@@ -1,7 +1,16 @@
+import { Dispatch } from 'redux';
+
 import { PAGE_STATES } from "src/app/utils/Constants";
-import { 
-    HOME__CHANGE_PAGE_STATE,
-} from "../actions/HomeActions";
+
+export const HOME__CHANGE_PAGE_STATE = "HOME__CHANGE_PAGE_STATE";
+
+export function home_changePageState() {
+    return function(dispatch: Dispatch) {
+        dispatch({
+            type: HOME__CHANGE_PAGE_STATE,
+        });
+    }
+}
 
 const initialState = {
     pageState: PAGE_STATES.PRISTINE,

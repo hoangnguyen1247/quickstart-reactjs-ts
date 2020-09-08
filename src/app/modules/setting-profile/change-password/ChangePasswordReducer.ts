@@ -1,7 +1,16 @@
-import { PAGE_STATES } from "../../../../utils/Constants";
-// import { 
-//     HOME__CHANGE_PAGE_STATE,
-// } from "../actions/HomeActions";
+import { Dispatch } from 'redux';
+
+import { PAGE_STATES } from "src/app/utils/Constants";
+
+export const CHANGE_PASSWORD_CHANGE_PAGE_STATE = "CHANGE_PASSWORD_CHANGE_PAGE_STATE";
+
+export function changePassword_changePageState() {
+    return function(dispatch: Dispatch) {
+        dispatch({
+            type: CHANGE_PASSWORD_CHANGE_PAGE_STATE,
+        });
+    }
+}
 
 const initialState = {
     pageState: PAGE_STATES.PRISTINE,

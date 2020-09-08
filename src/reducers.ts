@@ -3,7 +3,7 @@ import { i18nReducer } from "react-redux-i18n";
 
 import catalogReducer from './app/AppReducer';
 import { homeReducers } from './app/modules/home';
-import { profileReducers } from './app/modules/profile';
+import { profileReducers } from './app/modules/setting-profile';
 
 const appReducer = combineReducers({
     i18n: i18nReducer,

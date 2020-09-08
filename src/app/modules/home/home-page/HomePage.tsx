@@ -1,12 +1,8 @@
 import React from "react";
-import { connect } from "react-redux";
-import { Dispatch, bindActionCreators } from "redux";
+import PlusIcon from "mdi-react/PlusIcon";
 import { Button } from "reactstrap";
 import { I18n } from "react-redux-i18n";
 import { Helmet } from "react-helmet-async";
-import PlusIcon from "mdi-react/PlusIcon";
-
-import { AppContext } from "src/app/AppContext";
 
 import { Header } from "src/app/shared/header/Header";
 import { PageInner } from "src/app/shared/page-inner/PageInner";
@@ -20,107 +16,71 @@ import { AutoplayCarousel } from "src/app/shared/carousel/AutoplayCarousel";
 import { ExampleListCard } from "./children/ExampleListCard";
 import { CalendarCard } from "./children/CalendarCard";
 
-const mapStateToProps = () => {
-    return {
+function HomePage(props) {
 
-    };
-}
+    const homeI18n = I18n.t("home");
+    const banners = [
+        {
+            mobileSrc: "",
+            desktopSrc: "",
+        },
+    ];
+    const items = [
+        {
+            value: 1,
+        },
+        {
+            value: 2,
+        },
+        {
+            value: 3,
+        },
+    ];
 
-const mapDispatchToProps = (dispatch: Dispatch) => {
-    return {
-        ...bindActionCreators({
-
-        }, dispatch),
-    }
-}
-
-const connector = connect(mapStateToProps, mapDispatchToProps, null, { forwardRef: true });
-
-class HomePage extends React.Component {
-
-    static contextType = AppContext;
-
-    constructor(props) {
-        super(props);
-
-        this._handleButtonButtonClick = this._handleButtonButtonClick.bind(this);
-    }
-
-    _handleButtonButtonClick() {
-        const { 
-            confirmDialogRef,
-        } = this.context;
-
-        if (confirmDialogRef && confirmDialogRef.current) {
-            confirmDialogRef.current.show({});
-        }
-    }
-
-    render() {
-        const homeI18n = I18n.t("home");
-        const banners = [
-            {
-                mobileSrc: "",
-                desktopSrc: "",
-            },
-        ];
-        const items = [
-            {
-                value: 1,
-            },
-            {
-                value: 2,
-            },
-            {
-                value: 3,
-            },
-        ];
-
-        return (
-            <div>
-                <Helmet>
-                    <title>{homeI18n.meta.title}</title>
-                </Helmet>
-                <Header
+    return (
+        <div>
+            <Helmet>
+                <title>{homeI18n.meta.title}</title>
+            </Helmet>
+            <Header
+            />
+            <JumbotronBanner>
+                <AutoplayCarousel
+                    items={banners}
+                    itemClassName="embed-responsive-item"
                 />
-                <JumbotronBanner>
-                    <AutoplayCarousel
-                        items={banners}
-                        itemClassName="embed-responsive-item"
+            </JumbotronBanner>
+            <div className="d-flex">
+                <NavigationBar />
+                <PageInner>
+                    <Toolbar
+                        breadcrumbItems={[
+                            { label: "Hello" },
+                            { label: "Hello" },
+                        ]}
+                        breadcrumbActiveItemLabel="Home"
+                    >
+                        <Button>
+                            <PlusIcon />
+                        </Button>
+                    </Toolbar>
+                    <div>
+                        Content
+                    </div>
+                    <ExampleListCard
+                        items={items}
                     />
-                </JumbotronBanner>
-                <div className="d-flex">
-                    <NavigationBar />
-                    <PageInner>
-                        <Toolbar
-                            breadcrumbItems={[
-                                { label: "Hello" },
-                                { label: "Hello" },
-                            ]}
-                            breadcrumbActiveItemLabel="Home"
-                        >
-                            <Button>
-                                <PlusIcon />
-                            </Button>
-                        </Toolbar>
-                        <div>
-                            Content
-                        </div>
-                        <ExampleListCard
-                            items={items}
-                        />
-                        <ExampleListCard
-                            items={items}
-                            useDragHandle={true}
-                        />
-                    </PageInner>
-                </div>
-                <CalendarCard
-                />
-                <Footer />
+                    <ExampleListCard
+                        items={items}
+                        useDragHandle={true}
+                    />
+                </PageInner>
             </div>
-        );
-    }
+            <CalendarCard
+            />
+            <Footer />
+        </div>
+    );
 }
 
-export default connector(HomePage);
+export default HomePage;
