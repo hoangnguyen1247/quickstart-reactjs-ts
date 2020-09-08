@@ -72,7 +72,7 @@ export function AppManager({
             changeNavigationInRight: (state) => _updateState("isShowNavigationInRight", !state),
         }}>
             <Helmet>
-                <title>{applicationI18n.meta.title}</title>
+                <title>{applicationI18n?.meta?.title}</title>
             </Helmet>
             <AppInitializer
             />
