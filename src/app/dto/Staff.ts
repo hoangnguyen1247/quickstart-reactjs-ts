@@ -1,22 +1,17 @@
+export function Staff(entityDto) {
 
-export interface IStaff {
-    id: string,
-}
-
-export class Staff {
-    
-    id: string;
-
-    constructor(entityDto?: IStaff) {
-        this.id = entityDto ? entityDto.id : "";
+    return {
+        id: entityDto ? entityDto.id : "",
     }
 }
 
-export function StaffList(entityDtoList: Staff[] = []) {
-    const _entityListDto: Staff[] = [];
+export type IStaff = ReturnType<typeof Staff>;
+
+export function StaffList(entityDtoList: IStaff[] = []) {
+    const _entityListDto: IStaff[] = [];
 
     entityDtoList.forEach((item) => {
-        _entityListDto.push(new Staff(item));
+        _entityListDto.push(Staff(item));
     });
 
     return _entityListDto;

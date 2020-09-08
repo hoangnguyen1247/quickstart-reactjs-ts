@@ -1,22 +1,17 @@
+export function Order(entityDto) {
 
-export interface IOrder {
-    id: string,
-}
-
-export class Order {
-    
-    id: string;
-
-    constructor(entityDto?: IOrder) {
-        this.id = entityDto ? entityDto.id : "";
+    return {
+        id: entityDto ? entityDto.id : "",
     }
 }
 
-export function OrderList(entityDtoList: Order[] = []) {
-    const _entityListDto: Order[] = [];
+export type IOrder = ReturnType<typeof Order>;
+
+export function OrderList(entityDtoList: IOrder[] = []) {
+    const _entityListDto: IOrder[] = [];
 
     entityDtoList.forEach((item) => {
-        _entityListDto.push(new Order(item));
+        _entityListDto.push(Order(item));
     });
 
     return _entityListDto;
