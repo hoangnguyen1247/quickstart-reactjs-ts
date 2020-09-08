@@ -28,7 +28,7 @@ type Props = {
     children: ({ profile }) => React.ReactNode,
 };
 
-export function AppContainer({
+export function AppManager({
     history,
     children,
 }: Props) {
