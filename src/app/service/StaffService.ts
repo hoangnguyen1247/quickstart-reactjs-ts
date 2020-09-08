@@ -43,7 +43,7 @@ export function apiStaff_findOneById(id: string | number): Promise<any> {
     return new Promise((resolve, reject) => {
         return apiGet(format(APIS_STAFF__FIND_ONE_BY_ID, {id: id}))
             .then(res => {
-                resolve(new Staff(res.data.user))
+                resolve(Staff(res.data.user))
             })
             .catch(error => {
                 reject(error && error.response ? error.response.data : {});
@@ -55,7 +55,7 @@ export function apiStaff_insert(account: Object): Promise<any> {
     return new Promise((resolve, reject) => {
         return apiPost(APIS_STAFF__INSERT, account)
             .then(res => {
-                resolve(new Staff(res.data.user))
+                resolve(Staff(res.data.user))
             })
             .catch(error => {
                 reject(error && error.response ? error.response.data : {});
