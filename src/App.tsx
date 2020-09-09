@@ -6,7 +6,7 @@ import cookie from "react-cookies";
 import canUseDOM from "src/can-use-dom";
 import { routes } from 'src/routes';
 import { LOCAL_STORAGE } from "src/app/utils/Constants";
-import { hasSomeRoles } from 'src/app/utils/AppUtils';
+import { hasSomeRoles } from 'src/app/utils/PermissionUtils';
 
 import { AppManager } from 'src/app/AppManager';
 
