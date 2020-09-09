@@ -1,4 +1,3 @@
-// @flow
 export const LOCAL_STORAGE = {
     ACCESS_TOKEN: "accessToken",
     ACCESS_TOKEN_EXPIRES_IN: "accessTokenExpiresIn",
@@ -635,7 +634,7 @@ export const SETTING_NAMES = {
 
     LAUNDRY_TO_VENDOR__SERVICE_ITEM: "laundryToVendor_serviceItem",
     LAUNDRY_TO_VENDOR__SERVICE_ITEMS: "laundryToVendor_serviceItems",
-    
+
     LABEL__URGENT: "label_urgent",
 
     DEFAULT_ACCOUNT__DEFAULT_CUSTOMER_SERVICE: "defaultAccount_defaultCustomerService",
@@ -658,8 +657,8 @@ export const SETTING_NAMES = {
     ISSUE_NOTIFICATION: "issueNotification",
 
     ORDER_FOLLOWUP_MODE__PROD: "orderFollowupMode_prod",
-    ORDER_FOLLOWUP__COUNT_0: "orderFollowup_count0", 
-    
+    ORDER_FOLLOWUP__COUNT_0: "orderFollowup_count0",
+
     LEAD_FOLLOWUP_MODE__PROD: "leadFollowupMode_prod",
 
     ORDER_CALLS_IGNORED_NUMBERS: "orderCallsIgnoredNumbers",
