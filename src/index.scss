@@ -22,12 +22,24 @@ code {
     z-index: 999;
 }
 
+.viewport-full {
+    width: 100vw;
+    height: 100vh;
+}
+
+.viewport-with-header {
+    width: 100vw;
+    height: calc(100vh - 42px);
+
+
+}
+
 .embed-responsive-lg-21by9::before {
     @media screen and (min-width: 992px) {
         padding-top: 42.857143%;
     }
 }
-  
+
 .embed-responsive-sm-16by9::before {
     @media screen and (max-width: 991px) {
         padding-top: 56.25%;

@@ -4,6 +4,21 @@
     "private": true,
     "author": "Hoàng hoangnguyen1247@gmail.com",
     "repository": "hoangnguyen1247/quickstart-reactjs-ts",
+    "scripts": {
+        "start": "react-scripts start",
+        "start:dev": "cross-env NODE_PATH=. NODE_ENV=development TS_NODE_PROJECT=tsconfig-server.json node -r ts-node/register server/main.ts",
+        "start:dev2": "cross-env NODE_ENV=development TS_NODE_PROJECT=tsconfig-server.json node -r @babel/register server/main.ts",
+        "start:prod": "cross-env NODE_ENV=production TS_NODE_PROJECT=tsconfig-server.json node -r ts-node/register server/main.ts",
+        "start:prod2": "cross-env NODE_ENV=production node -r @babel/register server/main.ts",
+        "start:prod1": "cross-env NODE_ENV=production ts-node --project tsconfig-server.json server/main.ts",
+        "start:deploy": "ts-node --project tsconfig-server.json server/main.ts",
+        "build": "GENERATE_SOURCEMAP=false react-scripts build",
+        "type-check": "cross-env NODE_PATH=. tsc --noEmit",
+        "test": "react-scripts test",
+        "eject": "react-scripts eject",
+        "pm2:dev": "pm2 deploy development",
+        "pm2:prod": "pm2 deploy production"
+    },
     "devDependencies": {
         "@types/express": "^4.17.3",
         "@types/history": "^4.7.5",
@@ -81,20 +96,6 @@
         "use-media": "^1.4.0",
         "validator": "^13.0.0"
     },
-    "scripts": {
-        "start": "react-scripts start",
-        "start:dev": "cross-env NODE_PATH=. NODE_ENV=development TS_NODE_PROJECT=tsconfig-server.json node -r ts-node/register server/main.ts",
-        "start:dev2": "cross-env NODE_ENV=development TS_NODE_PROJECT=tsconfig-server.json node -r @babel/register server/main.ts",
-        "start:prod": "cross-env NODE_ENV=production TS_NODE_PROJECT=tsconfig-server.json node -r ts-node/register server/main.ts",
-        "start:prod2": "cross-env NODE_ENV=production node -r @babel/register server/main.ts",
-        "start:prod1": "cross-env NODE_ENV=production ts-node --project tsconfig-server.json server/main.ts",
-        "start:deploy": "ts-node --project tsconfig-server.json server/main.ts",
-        "build": "GENERATE_SOURCEMAP=false react-scripts build",
-        "test": "react-scripts test",
-        "eject": "react-scripts eject",
-        "pm2:dev": "pm2 deploy development",
-        "pm2:prod": "pm2 deploy production"
-    },
     "eslintConfig": {
         "extends": "react-app"
     },
@@ -109,5 +110,10 @@
             "last 1 firefox version",
             "last 1 safari version"
         ]
+    },
+    "husky": {
+        "hooks": {
+            "pre-commit": "npm run type-check"
+        }
     }
 }

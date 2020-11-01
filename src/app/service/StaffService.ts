@@ -9,7 +9,7 @@ import {
     APIS_STAFF__UPDATE,
     APIS_STAFF__DELETE,
 } from "./ApiEndpoint";
-import { Staff, StaffList } from "../dto/Staff";
+import { User, UserList } from "src/app/dto/User";
 
 export function apiStaff_search(searchKey?: string, searchFields?: string[], filterMap: Object = {}, page?: number, size?: number, sortBy?: string, sortDirection?: number): Promise<any> {
     return new Promise((resolve, reject) => {
@@ -31,7 +31,7 @@ export function apiStaff_search(searchKey?: string, searchFields?: string[], fil
         }
         return apiGet(formattedUrl)
             .then(res => {
-                resolve({ users: StaffList(res.data.users), totalItems: parseInt(res.data.totalItems, 10) })
+                resolve({ users: UserList(res.data.users), totalItems: parseInt(res.data.totalItems, 10) })
             })
             .catch(error => {
                 reject(error && error.response ? error.response.data : {});
@@ -43,7 +43,7 @@ export function apiStaff_findOneById(id: string | number): Promise<any> {
     return new Promise((resolve, reject) => {
         return apiGet(format(APIS_STAFF__FIND_ONE_BY_ID, {id: id}))
             .then(res => {
-                resolve(new Staff(res.data.user))
+                resolve(User(res.data.user))
             })
             .catch(error => {
                 reject(error && error.response ? error.response.data : {});
@@ -55,7 +55,7 @@ export function apiStaff_insert(account: Object): Promise<any> {
     return new Promise((resolve, reject) => {
         return apiPost(APIS_STAFF__INSERT, account)
             .then(res => {
-                resolve(new Staff(res.data.user))
+                resolve(User(res.data.user))
             })
             .catch(error => {
                 reject(error && error.response ? error.response.data : {});
